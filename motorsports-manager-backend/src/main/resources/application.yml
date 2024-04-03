@@ -1,14 +1,16 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:motorsports;DB_CLOSE_DELAY=-1
-    username: sa
-    password:
-    driverClassName: org.h2.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: example
   jpa:
     show-sql: true
     hibernate:
       dialect: org.hibernate.dialect.SQLServer2012Dialect
       ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
   jackson:
     default-property-inclusion: non_null
 springdoc:
@@ -16,3 +18,5 @@ springdoc:
     path: /open-api
   swagger-ui:
     path: /
+
+server.port: 8081

@@ -140,7 +140,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: com.vaadin.external.google:android-json:0.0.20131108.vaadin1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework:spring-test:6.0.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.xmlunit:xmlunit-core:2.9.0" level="project" />
-    <orderEntry type="library" name="Maven: com.h2database:h2:2.1.214" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: com.h2database:h2:2.1.214" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: net.javacrumbs.json-unit:json-unit-assertj:2.35.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: net.javacrumbs.json-unit:json-unit-core:2.35.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:2.2" level="project" />

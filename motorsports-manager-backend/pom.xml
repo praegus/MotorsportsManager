@@ -158,7 +158,7 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-<!--            <scope>test</scope>-->
+            <scope>test</scope>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/net.javacrumbs.json-unit/json-unit-assertj -->
