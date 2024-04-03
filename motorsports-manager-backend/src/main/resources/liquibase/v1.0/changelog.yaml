@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: install-project.sql
+      relativeToChangelogFile: true
+  - include:
+      file: install-testdata.sql
+      relativeToChangelogFile: true
