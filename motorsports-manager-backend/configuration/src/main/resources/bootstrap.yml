@@ -1,0 +1,8 @@
+---
+spring:
+  application:
+    name: motorsports-manager
+  health:
+    config:
+      enabled: false
+      time-to-live: 86400000
