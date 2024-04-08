@@ -84,37 +84,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- https://github.com/phoenixnap/springmvc-raml-plugin -->
-            <plugin>
-                <groupId>com.phoenixnap.oss</groupId>
-                <artifactId>springmvc-raml-plugin</artifactId>
-                <version>2.0.5</version>
-                <configuration>
-                    <ramlPath>src/main/resources/specs.raml</ramlPath>
-                    <schemaLocation>/types/</schemaLocation>
-                    <outputRelativePath>/target/generated-sources</outputRelativePath>
-                    <addTimestampFolder>false</addTimestampFolder>
-                    <basePackage>com.mk.raml</basePackage>
-                    <baseUri>/api</baseUri>
-                    <generateUnreferencedObjects>true</generateUnreferencedObjects>
-                    <generationConfig>
-                        <includeAdditionalProperties>false</includeAdditionalProperties>
-                    </generationConfig>
-                    <seperateMethodsByContentType>false</seperateMethodsByContentType>
-                    <rule>com.phoenixnap.oss.ramlplugin.raml2code.rules.Spring4ControllerInterfaceRule</rule>
-                    <ruleConfiguration>
-                    </ruleConfiguration>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>generate-springmvc-endpoints</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>generate-springmvc-endpoints</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 </project>
