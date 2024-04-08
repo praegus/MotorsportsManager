@@ -47,11 +47,7 @@
         </dependency>
 
         <!-- test dependencies -->
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>test</scope>
-        </dependency>
+
         <!-- cucumber -->
         <dependency>
             <groupId>io.cucumber</groupId>

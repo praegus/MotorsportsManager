@@ -1,21 +1,21 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: example
+    url: jdbc:h2:mem:motorsports;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: create-drop
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+        dialect: org.hibernate.dialect.H2Dialect
   liquibase:
     change-log: classpath:liquibase/changelog-master.yaml
   jackson:
     default-property-inclusion: non_null
 springdoc:
-  api-docs:
-    path: /open-api
   swagger-ui:
     path: /
+    url: /specs.yml
