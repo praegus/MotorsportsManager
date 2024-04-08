@@ -1,0 +1,70 @@
+#%RAML 1.0
+title: Motorsports Manager API
+version: v1
+protocols: [ HTTPS ]
+baseUri: http://myapi.mysite.com/api/{version}
+mediaType: application/json
+securedBy: [basicAuth]
+/chassis:
+  description: the chassis that can be used in our racecar
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: Chassis[]
+            example: |
+              [
+                  { "name": "normal", "color": "blue" },
+                  { "name": "fast", "color": "yellow" }
+              ]
+/teams:
+  description: teams can be created and managed by users
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: Team[]
+  post:
+    body:
+      application/json:
+        type: Team
+
+securitySchemes:
+  basicAuth:
+    description: Each request must contain the headers necessary for
+      basic authentication
+    type: Basic Authentication
+    describedBy:
+      headers:
+        Authorization:
+          description: Used to send the Base64-encoded "username:password"
+            credentials
+          type: string
+      responses:
+        401:
+          description: |
+            Unauthorized. Either the provided username and password
+            combination is invalid, or the user is not allowed to access
+            the content provided by the requested URL.
+
+types:
+  Chassis:
+    type: object
+    properties:
+      name:
+        required: true
+        type: string
+      color:
+        required: true
+        type: string
+  Team:
+    type: object
+    properties:
+      name:
+        required: true
+        type: string
+      slogan:
+        required: true
+        type: string
