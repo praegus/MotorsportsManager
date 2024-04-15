@@ -1,0 +1,22 @@
+schedules:
+  - cron: '0 3 * * *'
+    displayName: 'Every day at 3am (UTC)'
+    branches:
+      include: [main, renovate-pipeline]
+    always: true
+
+trigger: none
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+
+  - bash: |
+      git config --global user.email 'bot@renovateapp.com'
+      git config --global user.name 'Renovate Bot'
+      npx renovate
+    env:
+      RENOVATE_PLATFORM: azure
+      RENOVATE_ENDPOINT: $(System.CollectionUri)
+      RENOVATE_TOKEN: $(System.AccessToken)
