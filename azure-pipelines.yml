@@ -11,11 +11,14 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+  - task: npmAuthenticate@0
+    inputs:
+      workingFile: .npmrc
 
   - bash: |
       git config --global user.email 'bot@renovateapp.com'
       git config --global user.name 'Renovate Bot'
-      npx renovate
+      npx --userconfig .npmrc renovate
     env:
       RENOVATE_PLATFORM: azure
       RENOVATE_ENDPOINT: $(System.CollectionUri)
