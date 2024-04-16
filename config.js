@@ -7,5 +7,5 @@ module.exports = {
             password: process.env.RENOVATE_TOKEN,
         },
     ],
-    repositories: ['SoftwareDevelopmentEngineerInTest/MotorsportsManager'],
+    repositories: ['MotorsportsManager'],
 };
