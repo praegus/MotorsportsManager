@@ -14,7 +14,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.0</version>
+        <version>3.2.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -28,16 +28,16 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>17</java.version>
         <spring.version>6.0.3</spring.version>
-        <spring-boot.version>3.0.1</spring-boot.version>
-        <spring-cloud.version>2022.0.0</spring-cloud.version>
-        <org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
-        <openapi-generator.version>7.4.0</openapi-generator.version>
-        <swagger-annotations.version>2.2.16</swagger-annotations.version>
+        <spring-boot.version>3.2.4</spring-boot.version>
+        <spring-cloud.version>2022.0.5</spring-cloud.version>
+        <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
+        <openapi-generator.version>7.5.0</openapi-generator.version>
+        <swagger-annotations.version>2.2.21</swagger-annotations.version>
         <jackson-databind.version>0.2.6</jackson-databind.version>
-        <cucumber.version>7.6.0</cucumber.version>
-        <junit-platform.version>1.9.2</junit-platform.version>
-        <springdoc.version>2.1.0</springdoc.version>
-        <json-junit.version>2.35.0</json-junit.version>
+        <cucumber.version>7.16.1</cucumber.version>
+        <junit-platform.version>1.10.2</junit-platform.version>
+        <springdoc.version>2.5.0</springdoc.version>
+        <json-junit.version>2.38.0</json-junit.version>
         <wiremock.version>2.27.2</wiremock.version>
     </properties>
 
@@ -93,7 +93,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
+                <version>3.13.0</version>
                 <configuration>
                     <annotationProcessorPaths>
                         <path>
