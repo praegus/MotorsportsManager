@@ -1,6 +1,6 @@
 package io.sdet.msm.data.teams;
 
-import io.sdet.msm.business.teams.TeamDTO;
+import io.sdet.msm.business.teams.Team;
 import io.sdet.msm.business.teams.TeamRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,12 +15,12 @@ public class TeamRepositoryImpl implements TeamRepository {
     private final TeamDataMapper teamDataMapper;
 
     @Override
-    public List<TeamDTO> getTeams() {
+    public List<Team> getTeams() {
         return teamDataMapper.map(teamRepositoryJPA.findAll());
     }
 
     @Override
-    public void createTeam(TeamDTO teamDTO) {
-        teamRepositoryJPA.save(teamDataMapper.map(teamDTO));
+    public void createTeam(Team team) {
+        teamRepositoryJPA.save(teamDataMapper.map(team));
     }
 }

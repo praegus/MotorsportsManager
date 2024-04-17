@@ -1,6 +1,5 @@
 package io.sdet.msm.client;
 
-import io.sdet.msm.business.teams.TeamDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -15,11 +14,11 @@ public interface TeamClientMapper {
      */
     @Mapping(target = "withName", source = "name")
     @Mapping(target = "withSlogan", source = "slogan")
-    Team map(TeamDTO team);
+    io.sdet.msm.client.Team map(io.sdet.msm.business.teams.Team team);
 
-    List<Team> map(List<TeamDTO> teams);
+    List<io.sdet.msm.client.Team> map(List<io.sdet.msm.business.teams.Team> teams);
 
-    TeamDTO mapToDTO(TeamInput team);
+    io.sdet.msm.business.teams.Team mapToDTO(TeamInput team);
 
-    Team map(TeamInput team);
+    io.sdet.msm.client.Team map(TeamInput team);
 }
