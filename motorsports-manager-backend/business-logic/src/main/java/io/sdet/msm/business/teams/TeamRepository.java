@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface TeamRepository {
 
-    List<Team> getTeams();
+    List<TeamDTO> getTeams();
 
-    void createTeam(Team team);
+    void createTeam(TeamDTO teamDTO);
 }

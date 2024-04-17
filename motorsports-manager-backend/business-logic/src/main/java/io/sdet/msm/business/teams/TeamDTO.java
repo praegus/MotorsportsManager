@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Builder
 @Data
-public class Team {
+public class TeamDTO {
     private String name;
     private String slogan;
 }

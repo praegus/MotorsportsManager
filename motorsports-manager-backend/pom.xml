@@ -10,6 +10,7 @@
         <module>common</module>
         <module>adapter-web</module>
         <module>business-logic</module>
+        <module>adapter-graphql</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -39,6 +40,7 @@
         <springdoc.version>2.1.0</springdoc.version>
         <json-junit.version>2.35.0</json-junit.version>
         <wiremock.version>2.27.2</wiremock.version>
+        <graphql-maven-plugin.version>1.18</graphql-maven-plugin.version>
     </properties>
 
     <dependencyManagement>

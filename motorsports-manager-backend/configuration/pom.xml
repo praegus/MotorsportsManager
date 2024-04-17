@@ -29,21 +29,13 @@
         </dependency>
         <dependency>
             <groupId>io.sdet.msm</groupId>
-            <artifactId>adapter-web</artifactId>
+            <artifactId>adapter-graphql</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-config</artifactId>
+            <groupId>io.sdet.msm</groupId>
+            <artifactId>adapter-web</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <!-- test dependencies -->

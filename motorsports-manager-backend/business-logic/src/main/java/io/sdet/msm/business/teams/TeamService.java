@@ -13,11 +13,11 @@ public class TeamService {
 
     private final TeamRepository teamRepository;
 
-    public List<Team> getTeams() {
+    public List<TeamDTO> getTeams() {
         return teamRepository.getTeams();
     }
 
-    public void createTeam(Team team) {
-        teamRepository.createTeam(team);
+    public void createTeam(TeamDTO teamDTO) {
+        teamRepository.createTeam(teamDTO);
     }
 }
