@@ -29,7 +29,7 @@
         <java.version>17</java.version>
         <spring.version>6.0.3</spring.version>
         <spring-boot.version>3.2.4</spring-boot.version>
-        <spring-cloud.version>2022.0.5</spring-cloud.version>
+        <spring-cloud.version>2023.0.1</spring-cloud.version>
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
         <openapi-generator.version>7.5.0</openapi-generator.version>
         <swagger-annotations.version>2.2.21</swagger-annotations.version>
