@@ -37,7 +37,7 @@
         <cucumber.version>7.16.1</cucumber.version>
         <junit-platform.version>1.10.2</junit-platform.version>
         <springdoc.version>2.5.0</springdoc.version>
-        <json-junit.version>2.38.0</json-junit.version>
+        <json-junit.version>3.2.7</json-junit.version>
         <wiremock.version>2.27.2</wiremock.version>
     </properties>
 
