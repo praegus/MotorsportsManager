@@ -8,8 +8,9 @@ pool:
 
 steps:
   - task: Maven@3
+    workingDirectory: motorsports-manager-backend/
     inputs:
-      mavenPomFile: 'pom.xml'
+      mavenPomFile: 'motorsports-manager-backend/pom.xml'
       mavenOptions: '-Xmx3072m'
       javaHomeOption: 'JDKVersion'
       jdkVersionOption: '17'
