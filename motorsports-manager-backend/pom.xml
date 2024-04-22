@@ -7,7 +7,6 @@
     <modules>
         <module>adapter-data</module>
         <module>configuration</module>
-        <module>common</module>
         <module>adapter-web</module>
         <module>business-logic</module>
         <module>adapter-graphql</module>
