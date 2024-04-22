@@ -8,8 +8,8 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface TeamDataMapper {
-    @Mapping(target = "id", ignore = true)
     List<Team> map(List<TeamEntity> teams);
 
+    @Mapping(target = "id", ignore = true)
     TeamEntity map(Team team);
 }
