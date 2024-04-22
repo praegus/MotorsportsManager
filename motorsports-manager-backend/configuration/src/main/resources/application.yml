@@ -1,4 +1,5 @@
 spring:
+  graphql.graphiql.enabled: true
   datasource:
     url: jdbc:h2:mem:motorsports;DB_CLOSE_DELAY=-1
     username: sa
