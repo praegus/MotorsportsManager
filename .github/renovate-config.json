@@ -2,7 +2,6 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "branchPrefix": "renovate/",
   "platform": "github",
-  "gitAuthor": "Renovate Bot",
   "dependencyDashboardTitle": "Dependency Dashboard self-hosted",
   "repositories": ["praegus/MotorsportsManager"],
   "packageRules": [
