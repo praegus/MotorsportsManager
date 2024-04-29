@@ -1,5 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "branchPrefix": "github-renovate/",
+  "dependencyDashboardTitle": "Dependency Dashboard self-hosted",
   "packageRules": [
     {
       "groupName": "all non-major dependencies",
