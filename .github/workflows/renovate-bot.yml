@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - 'renovate/*'
+      - 'renovate/configure-for-github'
 jobs:
   renovate:
     runs-on: ubuntu-latest
@@ -19,4 +19,4 @@ jobs:
           configurationFile: .github/renovate-config.json
           token: ${{ secrets.RENOVATE_TOKEN }}
         env:
-          LOG_LEVEL: 'debug'
+          LOG_LEVEL: 'info'
