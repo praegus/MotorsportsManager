@@ -1,6 +1,6 @@
 ---
-name: Epic template
-about: Template for a new epic
+name: Epic
+about: Issue template for a new epic
 title: "[Epic]"
 labels: epic
 assignees: ''
