@@ -9,9 +9,14 @@ assignees: ''
 
 ### Description
 
+
 ### Acceptatie criteria
+
+- [ ]
 
 ### Tasks
 Frontend:
+- [ ]
 
 Backend:
+- [ ]
