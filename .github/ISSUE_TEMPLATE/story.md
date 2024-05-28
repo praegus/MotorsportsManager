@@ -1,14 +1,17 @@
 ---
 name: Story
 about: Issue template for a user story
-title: "[Story]"
+title: ''
 labels: story
 assignees: ''
 
 ---
 
-Epic:
-
 ### Description
 
+### Acceptatie criteria
+
 ### Tasks
+Frontend:
+
+Backend:
