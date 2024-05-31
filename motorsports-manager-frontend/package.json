@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "postinstall": "npm run generator-openapi",
     "generator-openapi": "openapi-generator-cli generate -i ../specs.yml -g typescript-fetch -o src/generated-sources",
     "lint": "next lint"
   },
