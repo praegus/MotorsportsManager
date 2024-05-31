@@ -15,7 +15,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <graphql-maven-plugin.version>2.4</graphql-maven-plugin.version>
+        <graphql-maven-plugin.version>2.5</graphql-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -41,7 +41,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>3.13.0</version>
             </plugin>
             <plugin>
                 <groupId>com.graphql-java-generator</groupId>

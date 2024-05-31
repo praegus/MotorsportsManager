@@ -2,8 +2,12 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "branchPrefix": "renovate/",
   "platform": "github",
+  "gitAuthor": "Renovate Bot <renovate-bot@praegus.nl>",
+  "onboarding": false,
   "dependencyDashboardTitle": "Dependency Dashboard self-hosted",
-  "repositories": ["praegus/MotorsportsManager"],
+  "repositories": [
+    "praegus/MotorsportsManager"
+  ],
   "packageRules": [
     {
       "groupName": "all non-major dependencies",
@@ -14,8 +18,9 @@
       "matchUpdateTypes": [
         "minor",
         "patch"
-      ]
+      ],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true
     }
   ]
 }
-
