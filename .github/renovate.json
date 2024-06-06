@@ -3,7 +3,7 @@
   "branchPrefix": "renovate/",
   "platform": "github",
   "gitAuthor": "Renovate Bot <renovate-bot@praegus.nl>",
-  "onboarding": false,
+  "onboarding": true,
   "dependencyDashboardTitle": "Dependency Dashboard self-hosted",
   "repositories": [
     "praegus/MotorsportsManager"
@@ -20,7 +20,7 @@
         "patch"
       ],
       "matchCurrentVersion": "!/^0/",
-      "automerge": true
+      "automerge": false
     }
   ]
 }
