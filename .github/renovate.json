@@ -1,8 +1,9 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "branchPrefix": "renovate/",
-  "platform": "github",
   "gitAuthor": "Renovate Bot <renovate-bot@praegus.nl>",
+  "dependencyDashboard": true,
+  "dependencyDashboardTitle": "Renovate Dependency Dashboard",
   "packageRules": [
     {
       "groupName": "all non-major dependencies",
@@ -17,5 +18,9 @@
       "matchCurrentVersion": "!/^0/",
       "automerge": false
     }
-  ]
+  ],
+  "major": {
+    "dependencyDashboardApproval": true
+  }
 }
+
