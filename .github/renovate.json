@@ -3,11 +3,6 @@
   "branchPrefix": "renovate/",
   "platform": "github",
   "gitAuthor": "Renovate Bot <renovate-bot@praegus.nl>",
-  "onboarding": true,
-  "dependencyDashboardTitle": "Dependency Dashboard self-hosted",
-  "repositories": [
-    "praegus/MotorsportsManager"
-  ],
   "packageRules": [
     {
       "groupName": "all non-major dependencies",
