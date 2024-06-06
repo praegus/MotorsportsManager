@@ -3,6 +3,11 @@ on:
   schedule:
     - cron: '0 3 * * *'
   workflow_dispatch:
+
+env:
+  RENOVATE_PLATFORM: 'github'
+  RENOVATE_REPOSITORIES: 'praegus/MotorSportsManager'
+
 jobs:
   renovate:
     runs-on: ubuntu-latest
