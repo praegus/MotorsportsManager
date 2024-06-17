@@ -3,3 +3,5 @@
 /src/generated-sources/
 
 *.iml
+
+motorsports-manager-frontend/src/generated-sources/
