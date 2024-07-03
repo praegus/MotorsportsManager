@@ -1,17 +1,19 @@
 import {useState, useEffect} from "react";
 import {ChassisApi, ChassisResponse} from "../generated-sources";
 
-const Chassis = () => {
+export default function Chassis() {
   const [data, setData] = useState([]);
   var chassisApi = new ChassisApi();
+
   useEffect(() => {
       const fetchData = async() => {
         var chassis = await chassisApi.getChassis();
         setData(chassis);
-        console.log('test', chassis)
+        console.log('test', chassis);
       }
       fetchData();
   })
+
 
   return (
     <div className="flex">
@@ -24,5 +26,3 @@ const Chassis = () => {
     </div>
   );
 };
-
-export default Chassis;
