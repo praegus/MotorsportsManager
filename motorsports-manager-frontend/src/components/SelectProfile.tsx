@@ -6,8 +6,10 @@ export default function SelectProfile() {
     const [data, setData] = useState([]);
     var teamsApi = new TeamsApi();
     const router = useRouter();
+    var error = ``;
 
     async function onSubmit(event: FormEvent<HTMLFormElement>) {
+        error = ``;
         event.preventDefault();
         var teamRequest:TeamRequest = {
             name: event.target[0].value,
@@ -20,7 +22,7 @@ export default function SelectProfile() {
             console.log('ok');
             router.push(`profile?name=${event.target[0].value}`)
         }, (err) => {
-            console.log('error');
+            error = err;
         });
   }
 
@@ -32,6 +34,7 @@ export default function SelectProfile() {
             Profile
           </label>
           <input name="name" type="text" placeholder="ProfileName" />
+          <p class="mt-2 text-sm text-red-600 dark:text-red-500">{error}</p>
         </div>
         <div className="flex items-center justify-between">
           <button type="submit">
