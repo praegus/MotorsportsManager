@@ -1,17 +1,24 @@
-import {FormEvent} from 'react'
+import {useState, useEffect, FormEvent} from 'react'
+import {TeamsApi, TeamRequest} from "../generated-sources";
 
 export default function Start() {
-  async function onSubmit(event: FormEvent<HTMLFormElement>) {
-      event.preventDefault();
-      const formData = new FormData(event.currentTarget)
+    const [data, setData] = useState([]);
+    var teamsApi = new TeamsApi();
 
-        console.log('test')
-//       const response = await fetch('/api/submit', {
-//         method: 'POST',
-//         body: formData,
-//       })
-//
-//         const data = await response.json()
+    async function onSubmit(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        var teamRequest:TeamRequest = {
+            name: event.target[0].value,
+            slogan: "test"
+        };
+
+        await teamsApi.createTeam({
+            teamRequest: teamRequest
+        }).then(() => {
+            console.log('ok');
+        }, (err) => {
+            console.log('error');
+        });
   }
 
   return (
@@ -21,7 +28,7 @@ export default function Start() {
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="profileName">
             Profile
           </label>
-          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="profileName" type="text" placeholder="ProfileName" />
+          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="name" type="text" placeholder="ProfileName" />
         </div>
         <div className="flex items-center justify-between">
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
