@@ -1,8 +1,12 @@
-import Start from '../components/Start';
+import SelectProfile from '../components/SelectProfile';
+import NavBar from '../components/NavBar';
 
 const Home = () => {
   return (
-    <Start></Start>
+    <div>
+        <NavBar />
+        <SelectProfile />
+    </div>
   );
 };
 
