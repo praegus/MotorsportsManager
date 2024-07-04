@@ -1,4 +1,4 @@
 databaseChangeLog:
   - include:
-      file: changelog/0001-team.yaml
+      file: changelog/0001-profile.yaml
       relativeToChangelogFile: true
