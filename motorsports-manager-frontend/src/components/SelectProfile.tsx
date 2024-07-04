@@ -1,28 +1,30 @@
-import {useState, useEffect, FormEvent} from 'react'
-import {TeamsApi, TeamRequest} from "../generated-sources";
-import { useRouter } from 'next/router'
+import {useState, FormEvent} from 'react'
+import {ProfileApi, ProfileRequest} from "../generated-sources";
+import {useRouter} from 'next/router'
+import ErrorUtil from '../utils/ErrorUtil'
 
 export default function SelectProfile() {
-    const [data, setData] = useState([]);
-    var teamsApi = new TeamsApi();
+    const [error, setError] = useState<string | null>(null);
+
+    var profileApi = new ProfileApi();
     const router = useRouter();
-    var error = ``;
 
     async function onSubmit(event: FormEvent<HTMLFormElement>) {
-        error = ``;
+        setError(null)
         event.preventDefault();
-        var teamRequest:TeamRequest = {
-            name: event.target[0].value,
-            slogan: "test"
+        const formData = new FormData(event.currentTarget);
+        const chosenName = (formData.get("name")! as string);
+
+        var profileRequest:ProfileRequest = {
+            name: chosenName
         };
 
-        await teamsApi.createTeam({
-            teamRequest: teamRequest
+        await profileApi.createProfile({
+            profileRequest: profileRequest
         }).then(() => {
-            console.log('ok');
-            router.push(`profile?name=${event.target[0].value}`)
-        }, (err) => {
-            error = err;
+            router.push(`profile?name=${chosenName}`)
+        }, (errResponse) => {
+            ErrorUtil.retrieveErrorMessage(errResponse, (errorMessage: string) => setError(errorMessage));
         });
   }
 
@@ -34,11 +36,11 @@ export default function SelectProfile() {
             Profile
           </label>
           <input name="name" type="text" placeholder="ProfileName" />
-          <p class="mt-2 text-sm text-red-600 dark:text-red-500">{error}</p>
+          {error && <p className="mt-2 text-sm text-red-600 dark:text-red-500">{error}</p>}
         </div>
         <div className="flex items-center justify-between">
           <button type="submit">
-            Sign In
+            Create
           </button>
         </div>
       </form>

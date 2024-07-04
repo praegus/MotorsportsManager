@@ -70,7 +70,7 @@ components:
           type: string
           maxLength: 10
           minLength: 1
-          pattern: '[a-zA-Z0-9]'
+          pattern: '[a-zA-Z0-9]*'
     ProfileResponse:
       type: object
       properties:
