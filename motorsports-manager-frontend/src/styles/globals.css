@@ -11,3 +11,6 @@ label {
 button {
     @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none;
 }
+h1 {
+    @apply mb-8 font-extrabold leading-none tracking-tight text-gray-900 lg:text-4xl dark:text-black
+}

@@ -1,7 +1,7 @@
 import SelectProfile from '../components/SelectProfile';
 import NavBar from '../components/NavBar';
 
-const Home = () => {
+export default function Home() {
   return (
     <div>
         <NavBar />
@@ -9,5 +9,3 @@ const Home = () => {
     </div>
   );
 };
-
-export default Home;

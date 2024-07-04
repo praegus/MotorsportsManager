@@ -1,7 +1,7 @@
 import ShowProfile from '../components/ShowProfile';
 import NavBar from '../components/NavBar';
 
-const Profile = () => {
+export default function Profile() {
   return (
       <div>
         <NavBar />
@@ -10,4 +10,3 @@ const Profile = () => {
   );
 };
 
-export default Profile;

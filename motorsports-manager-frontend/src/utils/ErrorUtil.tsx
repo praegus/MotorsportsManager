@@ -1,6 +1,6 @@
 import {ResponseError} from "../generated-sources"
 
-export default class ErrorUtil {
+export class ErrorUtil {
     static retrieveErrorMessage(err: ResponseError, callback: any) {
         err.response.json().then(json => {
             if (json.errors) {

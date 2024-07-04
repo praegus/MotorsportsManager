@@ -1,7 +1,7 @@
 import {useState, FormEvent} from 'react'
 import {ProfileApi, ProfileRequest} from "../generated-sources";
 import {useRouter} from 'next/router'
-import ErrorUtil from '../utils/ErrorUtil'
+import {ErrorUtil} from '../utils'
 
 export default function SelectProfile() {
     const [error, setError] = useState<string | null>(null);
