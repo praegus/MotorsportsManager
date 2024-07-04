@@ -1,5 +1,5 @@
 import {useState, FormEvent} from 'react'
-import {ProfileApi, ProfileRequest} from "../generated-sources";
+import {ProfileApi, ProfileRequest, ResponseError} from "../generated-sources";
 import {useRouter} from 'next/router'
 import {ErrorUtil} from '../utils'
 
@@ -12,20 +12,24 @@ export default function SelectProfile() {
     async function onSubmit(event: FormEvent<HTMLFormElement>) {
         setError(null)
         event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        const chosenName = (formData.get("name")! as string);
 
-        var profileRequest:ProfileRequest = {
-            name: chosenName
-        };
+        try {
+          const formData = new FormData(event.currentTarget);
+          const chosenName = (formData.get("name")! as string);
 
-        await profileApi.createProfile({
-            profileRequest: profileRequest
-        }).then(() => {
-            router.push(`profile?name=${chosenName}`)
-        }, (errResponse) => {
-            ErrorUtil.retrieveErrorMessage(errResponse, (errorMessage: string) => setError(errorMessage));
-        });
+          var profileRequest:ProfileRequest = {
+              name: chosenName
+          };
+
+          await profileApi.createProfile({
+              profileRequest: profileRequest
+          }).then(() => {
+              router.push(`profile?name=${chosenName}`)
+          });
+        } catch (errResponse) {
+          ErrorUtil.retrieveErrorMessage(errResponse as ResponseError, (errorMessage: string) => setError(errorMessage));
+        }
+
   }
 
   return (
@@ -35,8 +39,8 @@ export default function SelectProfile() {
           <label htmlFor="profileName">
             Profile
           </label>
-          <input name="name" type="text" placeholder="ProfileName" />
-          {error && <p className="mt-2 text-sm text-red-600 dark:text-red-500">{error}</p>}
+          <input name="name" className={error? 'border-1 border-rose-500':''} type="text" placeholder="ProfileName" />
+          <p className="mt-2 text-sm text-red-600 dark:text-red-500">{error}</p>
         </div>
         <div className="flex items-center justify-between">
           <button type="submit">
