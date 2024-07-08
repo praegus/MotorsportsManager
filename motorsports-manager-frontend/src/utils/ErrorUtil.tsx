@@ -3,8 +3,8 @@ import {ResponseError} from "../generated-sources"
 export class ErrorUtil {
     static retrieveErrorMessage(err: ResponseError, callback: any) {
         err.response.json().then(json => {
-            if (json.errors) {
-                callback(json.errors[0].defaultMessage);
+            if (json.detail) {
+                callback(json.detail);
             } else if (json.message) {
                 callback(json.message);
             } else {

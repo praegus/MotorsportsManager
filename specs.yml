@@ -76,3 +76,21 @@ components:
       properties:
         name:
           type: string
+    ErrorResponse:
+      type: object
+      properties:
+        type:
+          type: string
+          description: a URI identifier that categorizes the error
+        title:
+          type: string
+          description: a brief, human-readable message about the error
+        status:
+          type: int
+          description: the HTTP response code (optional)
+        detail:
+          type: string
+          description: a human-readable explanation of the error
+        instance:
+          type: string
+          description: a URI that identifies the specific occurrence of the error
