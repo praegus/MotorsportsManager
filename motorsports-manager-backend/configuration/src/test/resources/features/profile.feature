@@ -10,33 +10,22 @@ Feature: profile
     Then I should receive a response with status code 201
     And I should receive the http location header with path "/profile/johan"
 
-  Scenario: create a duplicate profile with same cased name
+  Scenario Outline: profile names need to be unique while ignoring casing
     When I create "/profile" with:
-    """
-    {
-      "name": "BestaatAl"
-    }
-    """
+  """
+  {
+    "name": "<existingProfile>"
+  }
+  """
     And I create "/profile" with:
-    """
-    {
-      "name": "BestaatAl"
-    }
-    """
+  """
+  {
+    "name": "<newProfile>"
+  }
+  """
     Then I should receive a response with status code 409
 
-
-  Scenario: create a duplicate profile with same differently cased name
-    When I create "/profile" with:
-    """
-    {
-      "name": "Cased"
-    }
-    """
-    And I create "/profile" with:
-    """
-    {
-      "name": "cased"
-    }
-    """
-    Then I should receive a response with status code 409
+    Examples:
+      | existingProfile | newProfile |
+      | BestaatAl       | BestaatAl  |
+      | Cased           | cased      |

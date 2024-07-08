@@ -15,7 +15,6 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     }
 
     @ExceptionHandler(ProfileDuplicatedException.class)
-    @ResponseStatus(HttpStatus.CONFLICT)
     protected ResponseEntity<RestErrorResponse> handleProfileDuplicated(ProfileDuplicatedException ex) {
         return buildErrorResponse(HttpStatus.CONFLICT, ex.getMessage());
     }
