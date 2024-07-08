@@ -30,7 +30,7 @@ public class ProfileEndpoint implements ProfileApi {
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(profile.getName())
+                .buildAndExpand(profile.getName().toLowerCase())
                 .toUri();
 
         return ResponseEntity.created(location).build();

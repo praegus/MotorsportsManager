@@ -12,7 +12,6 @@ import static io.restassured.RestAssured.given;
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
 
 public class ApiSteps {
-
     @LocalServerPort
     protected int port;
 
@@ -31,6 +30,16 @@ public class ApiSteps {
     @Then("I should receive:")
     public void assertResponse(String expectedBody) {
         assertThatJson(response.getBody().prettyPrint()).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(expectedBody);
+    }
+
+    @Then("I should receive a response with status code {int}")
+    public void iShouldReceiveAResponseWithStatusCode(int statusCode) {
+        response.then().statusCode(statusCode);
+    }
+
+    @Then("I should receive the http location header with path {string}")
+    public void iShouldReceiveTheHttpLocationHeaderWithPath(String path) {
+        response.then().header("location", String.format("http://localhost:%d%s", port, path));
     }
 
     private RequestSpecification baseRequest() {
