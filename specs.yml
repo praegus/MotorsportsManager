@@ -58,6 +58,13 @@ paths:
               schema:
                 type: string
               description: Location of the created profile
+        409:
+          description: Profile already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
 components:
   schemas:
     ChassisResponse:
@@ -73,8 +80,6 @@ components:
         name:
           description: 'Name of the profile to create'
           type: string
-          maxLength: 10
-          minLength: 1
           pattern: '^[a-zA-Z0-9]{1,10}$'
           example: 'MyProfile'
           nullable: false
