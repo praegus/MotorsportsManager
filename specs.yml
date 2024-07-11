@@ -52,8 +52,12 @@ paths:
               $ref: '#/components/schemas/ProfileRequest'
       responses:
         201:
-          description: OK
-
+          description: New profile created
+          headers:
+            location:
+              schema:
+                type: string
+              description: Location of the created profile
 components:
   schemas:
     ChassisResponse:
@@ -67,10 +71,13 @@ components:
       type: object
       properties:
         name:
+          description: 'Name of the profile to create'
           type: string
           maxLength: 10
           minLength: 1
-          pattern: '^[a-zA-Z0-9]+'
+          pattern: '^[a-zA-Z0-9]{1,10}$'
+          example: 'MyProfile'
+          nullable: false
     ProfileResponse:
       type: object
       properties:
