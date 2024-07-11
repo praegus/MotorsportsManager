@@ -29,15 +29,15 @@
         <java.version>17</java.version>
         <spring.version>6.0.3</spring.version>
         <spring-boot.version>3.3.1</spring-boot.version>
-        <spring-cloud.version>2023.0.2</spring-cloud.version>
+        <spring-cloud.version>2023.0.3</spring-cloud.version>
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
-        <openapi-generator.version>7.6.0</openapi-generator.version>
+        <openapi-generator.version>7.7.0</openapi-generator.version>
         <swagger-annotations.version>2.2.22</swagger-annotations.version>
         <jackson-databind.version>0.2.6</jackson-databind.version>
         <cucumber.version>7.18.0</cucumber.version>
-        <junit-platform.version>1.10.2</junit-platform.version>
-        <springdoc.version>2.5.0</springdoc.version>
-        <json-junit.version>3.2.7</json-junit.version>
+        <junit-platform.version>1.10.3</junit-platform.version>
+        <springdoc.version>2.6.0</springdoc.version>
+        <json-junit.version>3.4.0</json-junit.version>
         <wiremock.version>2.27.2</wiremock.version>
         <graphql-maven-plugin.version>1.18</graphql-maven-plugin.version>
     </properties>
