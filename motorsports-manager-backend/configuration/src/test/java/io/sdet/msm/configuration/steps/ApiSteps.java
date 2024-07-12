@@ -1,5 +1,6 @@
 package io.sdet.msm.configuration.steps;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.http.ContentType;
@@ -10,6 +11,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 
 import static io.restassured.RestAssured.given;
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
+import static org.hamcrest.Matchers.equalTo;
 
 public class ApiSteps {
     @LocalServerPort
@@ -44,5 +46,10 @@ public class ApiSteps {
 
     private RequestSpecification baseRequest() {
         return given().port(port);
+    }
+
+    @Then("I should receive the error message {}")
+    public void iShouldReceiveTheErrorMessage(String message) {
+        response.then().body("detail", equalTo(message));
     }
 }
