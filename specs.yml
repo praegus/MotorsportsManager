@@ -11,7 +11,7 @@ servers:
 paths:
   /chassis:
     get:
-      summary: get all chassis
+      summary: Get all chassis
       operationId: getChassis
       tags:
         - chassis
@@ -24,36 +24,46 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ChassisResponse'
-  /teams:
+  /profile:
     get:
-      summary: get all teams
-      operationId: getTeams
+      summary: Get a profile
+      operationId: getProfile
       tags:
-        - teams
+        - profile
       responses:
         200:
-          description: retrieve teams
+          description: Retrieve a profile
           content:
             application/json:
               schema:
-                type: array
+                type: object
                 items:
-                  $ref: '#/components/schemas/TeamResponse'
+                  $ref: '#/components/schemas/ProfileResponse'
     post:
-      summary: create a new team
-      operationId: createTeam
+      summary: Create a new profile
+      operationId: createProfile
       tags:
-        - teams
+        - profile
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TeamRequest'
+              $ref: '#/components/schemas/ProfileRequest'
       responses:
         201:
-          description: OK
-
+          description: New profile created
+          headers:
+            location:
+              schema:
+                type: string
+              description: Location of the created profile
+        409:
+          description: Profile already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
 
 components:
   schemas:
@@ -64,17 +74,35 @@ components:
           type: string
         color:
           type: string
-    TeamRequest:
+    ProfileRequest:
+      type: object
+      properties:
+        name:
+          description: 'Name of the profile to create'
+          type: string
+          pattern: '^[a-zA-Z0-9]{1,10}$'
+          example: 'MyProfile'
+          nullable: false
+    ProfileResponse:
       type: object
       properties:
         name:
           type: string
-        slogan:
-          type: string
-    TeamResponse:
+    ErrorResponse:
       type: object
       properties:
-        name:
+        type:
           type: string
-        slogan:
+          description: a URI identifier that categorizes the error
+        title:
           type: string
+          description: a brief, human-readable message about the error
+        status:
+          type: int
+          description: the HTTP response code (optional)
+        detail:
+          type: string
+          description: a human-readable explanation of the error
+        instance:
+          type: string
+          description: a URI that identifies the specific occurrence of the error

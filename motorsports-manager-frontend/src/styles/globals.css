@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input {
+    @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none;
+}
+label {
+    @apply block text-gray-700 text-sm font-bold mb-2;
+}
+button {
+    @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none;
+}
+h1 {
+    @apply mb-8 font-extrabold leading-none tracking-tight text-gray-900 lg:text-4xl dark:text-black
+}

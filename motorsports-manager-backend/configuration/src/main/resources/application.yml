@@ -1,5 +1,4 @@
 spring:
-  graphql.graphiql.enabled: true
   datasource:
     url: jdbc:h2:mem:motorsports;DB_CLOSE_DELAY=-1
     username: sa
@@ -9,14 +8,17 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create-drop
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.H2Dialect
   liquibase:
     change-log: classpath:liquibase/changelog-master.yaml
   jackson:
     default-property-inclusion: non_null
+  h2:
+    console:
+      enabled: true
 springdoc:
   swagger-ui:
     path: /
     url: /specs.yml
+server:
+  error:
+    include-binding-errors: always

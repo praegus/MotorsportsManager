@@ -1,5 +1,6 @@
 package io.sdet.msm.configuration.steps;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.http.ContentType;
@@ -10,9 +11,9 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 
 import static io.restassured.RestAssured.given;
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
+import static org.hamcrest.Matchers.equalTo;
 
 public class ApiSteps {
-
     @LocalServerPort
     protected int port;
 
@@ -33,7 +34,22 @@ public class ApiSteps {
         assertThatJson(response.getBody().prettyPrint()).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(expectedBody);
     }
 
+    @Then("I should receive a response with status code {int}")
+    public void iShouldReceiveAResponseWithStatusCode(int statusCode) {
+        response.then().statusCode(statusCode);
+    }
+
+    @Then("I should receive the http location header with path {string}")
+    public void iShouldReceiveTheHttpLocationHeaderWithPath(String path) {
+        response.then().header("location", String.format("http://localhost:%d%s", port, path));
+    }
+
     private RequestSpecification baseRequest() {
         return given().port(port);
+    }
+
+    @Then("I should receive the error message {}")
+    public void iShouldReceiveTheErrorMessage(String message) {
+        response.then().body("detail", equalTo(message));
     }
 }

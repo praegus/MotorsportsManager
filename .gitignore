@@ -5,3 +5,4 @@
 *.iml
 
 motorsports-manager-frontend/src/generated-sources/
+motorsports-manager-backend/.idea/workspace.xml

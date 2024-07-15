@@ -1,0 +1,33 @@
+# This workflow will build a React project with Nodejs
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Motorsports Manager Frontend CI
+
+on:
+  push:
+    paths:
+      - 'motorsports-manager-frontend/**'
+      - '.github/workflows/motorsports-manager-frontend.yml'
+  pull_request:
+    paths:
+      - 'motorsports-manager-frontend/**'
+      - '.github/workflows/motorsports-manager-frontend.yml'
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: motorsports-manager-frontend
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+    - run: npm ci
+    - run: npm run lint
+    - run: npm run test
+    - run: npm run build --if-present
