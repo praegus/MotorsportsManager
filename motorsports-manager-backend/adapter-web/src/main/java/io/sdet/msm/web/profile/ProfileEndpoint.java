@@ -26,18 +26,24 @@ public class ProfileEndpoint implements ProfileApi {
     public ResponseEntity<Void> createProfile(ProfileRequest profileRequest) {
         Profile profile = profileWebMapper.map(profileRequest);
 
-        profileService.createProfile(profile);
+        Profile createdProfile = profileService.createProfile(profile);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(profile.getName().toLowerCase())
+                .path("/{name}")
+                .buildAndExpand(createdProfile.getName().toLowerCase())
                 .toUri();
 
         return ResponseEntity.created(location).build();
     }
 
     @Override
-    public ResponseEntity<List<ProfileResponse>> getProfile() {
+    public ResponseEntity<List<ProfileResponse>> getAllProfiles() {
         return null;
+    }
+
+    @Override
+    public ResponseEntity<ProfileResponse> getProfileByName(String name) {
+        ProfileResponse profileResponse = profileWebMapper.map(profileService.getProfileByName(name));
+        return ResponseEntity.ok(profileResponse);
     }
 }

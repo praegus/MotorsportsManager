@@ -1,4 +1,4 @@
-openapi: "3.0.3"
+openapi: 3.0.3
 info:
   title: Motorsports Manager
   version: 1.0.0
@@ -9,6 +9,27 @@ info:
 servers:
   - url: http://localhost:8080
 paths:
+  /profile/{name}:
+    get:
+      summary: Retrieve a profile by name
+      operationId: getProfileByName
+      tags:
+        - profile
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: '^[a-zA-Z0-9]{1,10}$'
+            example: 'MyProfile'
+      responses:
+        200:
+          description:  Response profile object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileResponse'
   /chassis:
     get:
       summary: Get all chassis
@@ -26,19 +47,25 @@ paths:
                   $ref: '#/components/schemas/ChassisResponse'
   /profile:
     get:
-      summary: Get a profile
-      operationId: getProfile
+      summary: Get all profiles
+      operationId: getAllProfiles
       tags:
         - profile
       responses:
         200:
-          description: Retrieve a profile
+          description: Retrieve all profiles
           content:
             application/json:
               schema:
                 type: object
                 items:
                   $ref: '#/components/schemas/ProfileResponse'
+        404:
+          description: Profile not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
     post:
       summary: Create a new profile
       operationId: createProfile

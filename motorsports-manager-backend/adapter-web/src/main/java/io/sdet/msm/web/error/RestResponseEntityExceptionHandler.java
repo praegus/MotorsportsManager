@@ -1,6 +1,7 @@
 package io.sdet.msm.web.error;
 
 import io.sdet.msm.exception.ProfileDuplicatedException;
+import io.sdet.msm.exception.ProfileNotFoundException;
 import io.sdet.msm.model.ErrorResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,11 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     @ExceptionHandler(ProfileDuplicatedException.class)
     protected ResponseEntity<Object> handleProfileDuplicated(ProfileDuplicatedException ex) {
         return buildErrorResponse(HttpStatus.CONFLICT, ex.getMessage(), "Duplicated profile", "duplicated-profile");
+    }
+
+    @ExceptionHandler(ProfileNotFoundException.class)
+    protected ResponseEntity<Object> handleProfileNotFound(ProfileNotFoundException ex) {
+        return buildErrorResponse(HttpStatus.NOT_FOUND, ex.getMessage(), "Profile not found", "profile-not-found");
     }
 
     @Override

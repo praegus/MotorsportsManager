@@ -4,5 +4,5 @@ public interface ProfileRepository {
 
     Profile getProfile(String name);
 
-    void createProfile(Profile profile);
+    Profile createProfile(Profile profile);
 }

@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 public class ProfileService {
     private final ProfileRepository profileRepository;
 
-    public Profile getProfile(String profile) {
+    public Profile getProfileByName(String profile) {
         return profileRepository.getProfile(profile);
     }
 
-    public void createProfile(Profile profile) {
-        profileRepository.createProfile(profile);
+    public Profile createProfile(Profile profile) {
+        return profileRepository.createProfile(profile);
     }
 }
