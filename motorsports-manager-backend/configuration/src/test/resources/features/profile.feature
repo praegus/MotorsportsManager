@@ -11,12 +11,7 @@ Feature: profile
     And I should receive the http location header with path "/profile/johan"
 
   Scenario Outline: profile names need to be unique while ignoring casing
-    When I create "/profile" with:
-  """
-  {
-    "name": "<existingProfile>"
-  }
-  """
+    Given profile "<existingProfile>" already exists
     And I create "/profile" with:
   """
   {
