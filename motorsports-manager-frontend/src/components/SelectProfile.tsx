@@ -48,8 +48,8 @@ export default function SelectProfile() {
     try {
       await profileApi.getProfileByName({
         name: name
-      }).then(() => {
-          router.push(`profile?name=${name}`)
+      }).then((res) => {
+          router.push(`profile?name=${res.name}`)
       });
     } catch (errResponse) {
       ErrorUtil.retrieveErrorMessage(errResponse as ResponseError, (errorMessage: string) => setError(errorMessage));
