@@ -1,5 +1,5 @@
 import {useState, FormEvent} from 'react'
-import {ProfileApi, ProfileRequest, ResponseError} from "../generated-sources";
+import {ProfileApi, ProfileRequest, ProfileResponse, ResponseError} from "../generated-sources";
 import {useRouter} from 'next/router'
 import {ErrorUtil} from '../utils'
 
@@ -48,7 +48,7 @@ export default function SelectProfile() {
     try {
       await profileApi.getProfileByName({
         name: name
-      }).then((res) => {
+      }).then((res: ProfileResponse) => {
           router.push(`profile?name=${res.name}`)
       });
     } catch (errResponse) {
