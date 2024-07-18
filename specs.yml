@@ -9,26 +9,6 @@ info:
 servers:
   - url: http://localhost:8080
 paths:
-  /profile/{name}:
-    get:
-      summary: Retrieve a profile by name
-      operationId: getProfileByName
-      tags:
-        - profile
-      parameters:
-        - name: name
-          in: path
-          required: true
-          schema:
-            type: string
-            example: 'MyProfile'
-      responses:
-        200:
-          description:  Response profile object
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProfileResponse'
   /chassis:
     get:
       summary: Get all chassis
@@ -44,7 +24,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ChassisResponse'
-  /profile:
+  /profiles:
     get:
       summary: Get all profiles
       operationId: getAllProfiles
@@ -84,6 +64,10 @@ paths:
               schema:
                 type: string
               description: Location of the created profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileResponse'
         409:
           description: Profile already exists
           content:
@@ -91,6 +75,28 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
+  /profiles/{name}:
+    get:
+      summary: Retrieve a profile by name
+      operationId: getProfileByName
+      tags:
+        - profile
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: false
+            minLength: 1
+            example: 'MyProfile'
+      responses:
+        200:
+          description: Response profile object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileResponse'
 components:
   schemas:
     ChassisResponse:

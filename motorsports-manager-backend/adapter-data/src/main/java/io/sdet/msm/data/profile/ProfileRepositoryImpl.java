@@ -7,6 +7,8 @@ import io.sdet.msm.exception.ProfileNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
@@ -36,5 +38,12 @@ public class ProfileRepositoryImpl implements ProfileRepository {
 
         return profileDataMapper.map
                 (profileRepositoryJPA.save(profileDataMapper.map(profile)));
+    }
+
+    @Override
+    public List<Profile> getAllProfiles() {
+        return profileRepositoryJPA.findAll()
+                .stream().map(profileDataMapper::map)
+                .toList();
     }
 }
