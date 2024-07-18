@@ -1,6 +1,5 @@
 package io.sdet.msm.configuration.steps;
 
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.http.ContentType;
@@ -11,6 +10,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 
 import static io.restassured.RestAssured.given;
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 public class ApiSteps {
@@ -32,6 +32,11 @@ public class ApiSteps {
     @Then("I should receive:")
     public void assertResponse(String expectedBody) {
         assertThatJson(response.getBody().prettyPrint()).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(expectedBody);
+    }
+
+    @Then("I should receive a response containing:")
+    public void assertPartialResponse(String expectedBody) {
+        assertThat(response.getBody().prettyPrint()).containsIgnoringWhitespaces(expectedBody);
     }
 
     @Then("I should receive a response with status code {int}")
