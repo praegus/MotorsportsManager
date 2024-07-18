@@ -41,6 +41,30 @@ Feature: profile
       | :-)                  | [name]: must match "^[a-zA-Z0-9]{1,10}$" |
       | Dezenaamisveeltelang | [name]: must match "^[a-zA-Z0-9]{1,10}$" |
 
+  Scenario Outline: get an existing profile
+    Given profile "<existingProfile>" already exists
+    When I retrieve "/profile/<existingProfile>"
+    Then I should receive a response with status code 200
+    And I should receive a response containing:
+    """
+    {
+      "name": "<existingProfile>"
+    }
+    """
+    Examples:
+      | existingProfile |
+      | Gettum          |
 
-
-
+  Scenario: get an unknown profile
+    When I retrieve "/profile/notfound"
+    Then I should receive a response with status code 404
+    And I should receive a response containing:
+    """
+    {
+      "type": "profile-not-found",
+      "title": "Profile not found",
+      "status": 404,
+      "detail": "Profile not found",
+      "instance": null
+    }
+    """
