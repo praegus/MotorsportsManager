@@ -25,6 +25,16 @@ Feature: profiles
     }
     """
     Then I should receive a response with status code 409
+    And I should receive a response containing:
+    """
+    {
+      "type": "duplicated-profile",
+      "title": "Duplicated profile",
+      "status": 409,
+      "detail": "Profile with name '<newProfile>' already exists",
+      "instance": null
+    }
+    """
 
     Examples:
       | existingProfile | newProfile |
@@ -71,7 +81,7 @@ Feature: profiles
       "type": "profile-not-found",
       "title": "Profile not found",
       "status": 404,
-      "detail": "Profile not found",
+      "detail": "Profile with name 'notfound' not found",
       "instance": null
     }
     """
