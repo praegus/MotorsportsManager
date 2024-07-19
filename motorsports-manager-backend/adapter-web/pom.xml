@@ -94,6 +94,7 @@
                                 <useSpringBoot3>true</useSpringBoot3>
                                 <useJakartaEe>true</useJakartaEe>
                                 <openApiNullable>false</openApiNullable>
+                                <additionalModelTypeAnnotations>@lombok.Builder @lombok.NoArgsConstructor @lombok.AllArgsConstructor</additionalModelTypeAnnotations>
                             </configOptions>
                         </configuration>
                     </execution>

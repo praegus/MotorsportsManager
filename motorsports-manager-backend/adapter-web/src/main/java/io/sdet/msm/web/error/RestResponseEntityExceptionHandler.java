@@ -3,6 +3,9 @@ package io.sdet.msm.web.error;
 import io.sdet.msm.exception.ProfileDuplicatedException;
 import io.sdet.msm.exception.ProfileNotFoundException;
 import io.sdet.msm.model.ErrorResponse;
+import io.sdet.msm.model.FieldError;
+import jakarta.validation.ConstraintViolationException;
+import org.hibernate.validator.internal.engine.path.PathImpl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -13,7 +16,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
 
 @ControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
@@ -31,24 +35,50 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         return buildErrorResponse(HttpStatus.NOT_FOUND, ex.getMessage(), "Profile not found", "profile-not-found");
     }
 
+    @ExceptionHandler(ConstraintViolationException.class)
+    protected ResponseEntity<Object> handleProfileNotFound(ConstraintViolationException ex) {
+        var fieldErrors = ex.getConstraintViolations()
+                .stream()
+                .map(v->
+                        FieldError.builder()
+                            .field(((PathImpl)v.getPropertyPath()).getLeafNode().toString())
+                            .error(v.getMessage())
+                            .build())
+                .toList();
+
+        return buildErrorResponse(HttpStatus.BAD_REQUEST,
+                ex.getMessage(),
+                "Incorrect parameters provided",
+                "constraint-violation-exception",
+                fieldErrors);
+    }
+
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-        var detailMessage = ex
-                .getBindingResult()
+        var fieldErrors = ex.getBindingResult()
                 .getFieldErrors()
                 .stream()
-                .map(fe -> "[%s]: %s".formatted(fe.getField(), fe.getDefaultMessage()))
-                .collect(Collectors.joining("; "));
+                .map(v-> FieldError.builder().field(v.getField()).error(v.getDefaultMessage()).build())
+                .toList();
 
-        return buildErrorResponse(HttpStatus.BAD_REQUEST, detailMessage, "Incorrect request body", "incorrect-request-body");
+        return buildErrorResponse(HttpStatus.BAD_REQUEST,
+                ex.getLocalizedMessage(),
+                "Incorrect request body",
+                "incorrect-request-body",
+                fieldErrors);
     }
 
     private ResponseEntity<Object> buildErrorResponse(HttpStatus status, String detail, String title, String type) {
-        var errorResponse = new ErrorResponse();
-        errorResponse.detail(detail);
-        errorResponse.status(status.value());
-        errorResponse.title(title);
-        errorResponse.type(type);
-        return ResponseEntity.status(status).body(errorResponse);
+        return buildErrorResponse(status, detail, title, type, new ArrayList<>());
+    }
+
+    private ResponseEntity<Object> buildErrorResponse(HttpStatus status, String detail, String title, String type, List<FieldError> errors) {
+        return ResponseEntity.status(status).body(ErrorResponse.builder()
+                .detail(detail)
+                .status(status.value())
+                .title(title)
+                .type(type)
+                .errors(errors)
+                .build());
     }
 }
