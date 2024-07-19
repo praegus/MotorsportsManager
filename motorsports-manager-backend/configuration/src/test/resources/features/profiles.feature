@@ -1,6 +1,5 @@
 Feature: profiles
 
-  @DirtiesProfiles
   Scenario: create a valid new profile
     When I create "/profiles" with:
     """
@@ -17,7 +16,6 @@ Feature: profiles
     }
     """
 
-  @DirtiesProfiles
   Scenario Outline: profile names need to be unique while ignoring casing
     Given profile "<existingProfile>" already exists
     And I create "/profiles" with:
@@ -49,7 +47,6 @@ Feature: profiles
       | :-)                  | [name]: must match "^[a-zA-Z0-9]{1,10}$" |
       | Dezenaamisveeltelang | [name]: must match "^[a-zA-Z0-9]{1,10}$" |
 
-  @DirtiesProfiles
   Scenario Outline: get an existing profile
     Given profile "<existingProfile>" already exists
     When I retrieve "/profiles/<existingProfile>"
@@ -79,7 +76,6 @@ Feature: profiles
     }
     """
 
-  @DirtiesProfiles
   Scenario: get all profiles
     Given profile "pro" already exists
     And profile "propro" already exists

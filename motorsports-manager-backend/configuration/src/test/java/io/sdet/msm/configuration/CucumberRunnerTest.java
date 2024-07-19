@@ -1,6 +1,6 @@
 package io.sdet.msm.configuration;
 
-import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.sdet.msm.data.profile.ProfileRepositoryJPA;
 import org.junit.platform.suite.api.IncludeEngines;
 import org.junit.platform.suite.api.SelectClasspathResource;
@@ -15,8 +15,8 @@ public class CucumberRunnerTest {
     @Autowired
     ProfileRepositoryJPA profileRepositoryJPA;
 
-    //After hooks clean table after scenarios tagged with @DirtiesProfiles
-    @After(value="@DirtiesProfiles")
+    //Before hook cleans database before scenarios run
+    @Before
     public void clearProfilesTable() {
         profileRepositoryJPA.deleteAll();
     }
