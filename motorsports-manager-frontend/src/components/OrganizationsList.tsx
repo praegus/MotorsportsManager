@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react'
 import {OrganizationResponse, GetOrganizationByNameRequest, OrganizationApi, ErrorResponse} from "@/generated-sources";
 import {useRouter} from 'next/router'
 import {ErrorUtil} from '@/utils'
+import Link from 'next/link'
 
 export default function OrganizationsList() {
     const [errorResponse, setErrorResponse] = useState<ErrorResponse | null>(null);
@@ -39,10 +40,12 @@ export default function OrganizationsList() {
   return (
     <div className="flex">
       <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 m-auto mt-10">
-        Organizations:
-        <ul className="flex-1">
-            {data.map((item: OrganizationResponse) => <li key={item.name} onClick={openOrganization(item.name)}>{item.name}</li>)}
-        </ul>
+        Organizations: <br/>
+        {data.map((item: OrganizationResponse) => 
+        <Link key={item.name} className='hover:underline hover:text-gray-500' href={`/profiles/${router.query.profileName}/organizations/${item.name}`}>
+          {item.name}
+        </Link>
+        )}
         <p className="mt-2 text-sm text-red-600 dark:text-red-500">{errorResponse?.detail}</p>
       </div>
     </div>
