@@ -5,7 +5,7 @@ export default function ShowProfile() {
   return (
       <div className="w-full flex">
         <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 m-auto mt-10">
-            <p>Welcome! {router.query.name}</p>
+            <p>Welcome! {router.query.profileName}</p>
         </div>
     </div>
   );

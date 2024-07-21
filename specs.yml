@@ -94,6 +94,72 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProfileResponse'
+
+  /organizations:
+    get:
+      summary: Get all organizations
+      operationId: getAllOrganizations
+      tags:
+        - organization
+      responses:
+        200:
+          description: Retrieve all organizations
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/OrganizationResponse'
+
+    post:
+      summary: Create a new organization
+      operationId: createOrganization
+      tags:
+        - organization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationRequest'
+      responses:
+        201:
+          description: New organization created
+          headers:
+            location:
+              schema:
+                type: string
+              description: Location of the created organization
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationResponse'
+        409:
+          description: Organization already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /organizations/{name}:
+    get:
+      summary: Retrieve an organization by name
+      operationId: getOrganizationByName
+      tags:
+        - organization
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/OrganizationName'
+      responses:
+        200:
+          description: Response organization object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationResponse'
 components:
   schemas:
     ChassisResponse:
@@ -121,6 +187,24 @@ components:
       example: 'MyProfile'
       minLength: 1
       maxLength: 10
+    OrganizationRequest:
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/OrganizationName'
+          nullable: false
+    OrganizationResponse:
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/OrganizationName'
+    OrganizationName:
+      description: 'Name of the organization to create'
+      type: string
+      pattern: '^[a-zA-Z0-9]*$'
+      example: 'MyOrg'
+      minLength: 1
+      maxLength: 20
     ErrorResponse:
       type: object
       properties:

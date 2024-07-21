@@ -1,4 +1,4 @@
-import SelectProfile from '../components/SelectProfile';
+import SelectProfile from '../components/ProfileForm';
 import NavBar from '../components/NavBar';
 
 export default function Home() {
