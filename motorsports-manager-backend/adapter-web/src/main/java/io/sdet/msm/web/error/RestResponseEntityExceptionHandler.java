@@ -36,7 +36,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
-    protected ResponseEntity<Object> handleProfileNotFound(ConstraintViolationException ex) {
+    protected ResponseEntity<Object> handleContraintViolationException(ConstraintViolationException ex) {
         var fieldErrors = ex.getConstraintViolations()
                 .stream()
                 .map(v->

@@ -43,7 +43,7 @@ export default function SelectProfile() {
           router.push(`profile?name=${name}`)
       });
     } catch (errResponse: any) {
-      errResponse.response.json().then((json: ErrorResponse) => setErrorResponse(json));
+      ErrorUtil.retrieveErrorMessage(errResponse, (json: ErrorResponse) => setErrorResponse(json))
     }
   }
   async function SelectExistingProfile(name: string) {
@@ -54,15 +54,16 @@ export default function SelectProfile() {
           router.push(`profile?name=${res.name}`)
       });
     } catch (errResponse: any) {
-      errResponse.response.json().then((json: ErrorResponse) => setErrorResponse(json));
+      ErrorUtil.retrieveErrorMessage(errResponse, (json: ErrorResponse) => setErrorResponse(json))
     }
   }
   function getFieldErrors(field: string): FieldError[] {
     if (!errorResponse || !errorResponse.errors) return [];
     return errorResponse.errors.filter(error => error.field === field)
   }
-  function noSpecificErrorMessage() {
-    return errorResponse && !errorResponse.errors;
+  function noFieldErrorMessages() {
+    console.log('test', errorResponse)
+    return errorResponse && (!errorResponse.errors || !errorResponse.errors.length);
   }
 
   return (
@@ -80,7 +81,7 @@ export default function SelectProfile() {
           }
           
         </div>
-        <p className="mt-2 text-sm text-red-600 dark:text-red-500">{noSpecificErrorMessage()?errorResponse?.detail:''}</p>
+        <p className="mt-2 text-sm text-red-600 dark:text-red-500">{noFieldErrorMessages()?errorResponse?.detail:''}</p>
         <div className="flex items-center justify-between">
           <button type="submit" value="create">Create</button>
           <button type="submit" value="select">Login</button>
