@@ -1,4 +1,4 @@
-import {ResponseError, ErrorResponse} from "../generated-sources"
+import {ResponseError, ErrorResponse} from "@/generated-sources"
 
 export class ErrorUtil {
     static retrieveErrorMessage(err: ResponseError, callback: any) {

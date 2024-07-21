@@ -1,7 +1,7 @@
 import {useState, FormEvent} from 'react'
-import {OrganizationRequest, OrganizationApi, ErrorResponse, FieldError} from "../generated-sources";
+import {OrganizationRequest, OrganizationApi, ErrorResponse, FieldError} from "@/generated-sources";
 import {useRouter} from 'next/router'
-import {ErrorUtil} from '../utils'
+import {ErrorUtil} from '@/utils'
 
 export default function SelectOrganization() {
   const [errorResponse, setErrorResponse] = useState<ErrorResponse | null>(null);
