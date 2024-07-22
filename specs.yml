@@ -86,10 +86,7 @@ paths:
           in: path
           required: true
           schema:
-            type: string
-            nullable: false
-            minLength: 1
-            example: 'MyProfile'
+            $ref: '#/components/schemas/ProfileName'
       responses:
         200:
           description: Response profile object
@@ -110,16 +107,20 @@ components:
       type: object
       properties:
         name:
-          description: 'Name of the profile to create'
-          type: string
-          pattern: '^[a-zA-Z0-9]{1,10}$'
-          example: 'MyProfile'
+          $ref: '#/components/schemas/ProfileName'
           nullable: false
     ProfileResponse:
       type: object
       properties:
         name:
-          type: string
+          $ref: '#/components/schemas/ProfileName'
+    ProfileName:
+      description: 'Name of the profile to create'
+      type: string
+      pattern: '^[a-zA-Z0-9]*$'
+      example: 'MyProfile'
+      minLength: 1
+      maxLength: 10
     ErrorResponse:
       type: object
       properties:
@@ -138,3 +139,16 @@ components:
         instance:
           type: string
           description: a URI that identifies the specific occurrence of the error
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldError'
+    FieldError:
+      type: object
+      properties:
+        field:
+          type: string
+          description: the field that the error is thrown on
+        error:
+          type: string
+          description: the error message

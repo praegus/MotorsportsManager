@@ -32,7 +32,7 @@ Feature: profiles
       "title": "Duplicated profile",
       "status": 409,
       "detail": "Profile with name '<newProfile>' already exists",
-      "instance": null
+      "errors": []
     }
     """
 
@@ -48,14 +48,27 @@ Feature: profiles
       "name": "<profileName>"
     }
     """
-    Then I should receive a response with status code 400
-    And I should receive the error message <errorMessage>
+    Then I should receive:
+    """
+    {
+      "type": "${json-unit.ignore}",
+      "title": "${json-unit.ignore}",
+      "status": 400,
+      "detail": "${json-unit.ignore}",
+      "errors": [
+        {
+          "field": "name",
+          "error": "<errorMessage>"
+        }
+      ]
+    }
+    """
 
     Examples:
-      | profileName          | errorMessage                             |
-      |                      | [name]: must match "^[a-zA-Z0-9]{1,10}$" |
-      | :-)                  | [name]: must match "^[a-zA-Z0-9]{1,10}$" |
-      | Dezenaamisveeltelang | [name]: must match "^[a-zA-Z0-9]{1,10}$" |
+      | profileName          | errorMessage                  |
+      |                      | size must be between 1 and 10 |
+      | :-)                  | must match \"^[a-zA-Z0-9]*$\" |
+      | Dezenaamisveeltelang | size must be between 1 and 10 |
 
   Scenario Outline: get an existing profile
     Given profile "<existingProfile>" already exists
@@ -82,7 +95,7 @@ Feature: profiles
       "title": "Profile not found",
       "status": 404,
       "detail": "Profile with name 'notfound' not found",
-      "instance": null
+      "errors": []
     }
     """
 
