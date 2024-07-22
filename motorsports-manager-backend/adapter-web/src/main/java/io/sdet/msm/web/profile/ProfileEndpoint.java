@@ -1,6 +1,6 @@
 package io.sdet.msm.web.profile;
 
-import io.sdet.msm.api.ProfileApi;
+import io.sdet.msm.api.ProfilesApi;
 import io.sdet.msm.business.profile.Profile;
 import io.sdet.msm.business.profile.ProfileService;
 import io.sdet.msm.model.ProfileRequest;
@@ -17,27 +17,33 @@ import java.util.List;
 @RestController
 @Log4j2
 @RequiredArgsConstructor
-public class ProfileEndpoint implements ProfileApi {
+public class ProfileEndpoint implements ProfilesApi {
 
     private final ProfileService profileService;
     private final ProfileWebMapper profileWebMapper;
 
     @Override
-    public ResponseEntity<Void> createProfile(ProfileRequest profileRequest) {
+    public ResponseEntity<ProfileResponse> createProfile(ProfileRequest profileRequest) {
         Profile profile = profileWebMapper.map(profileRequest);
 
-        profileService.createProfile(profile);
+        Profile createdProfile = profileService.createProfile(profile);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(profile.getName().toLowerCase())
+                .path("/{name}")
+                .buildAndExpand(createdProfile.getName().toLowerCase())
                 .toUri();
 
-        return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location).body(profileWebMapper.map(createdProfile));
     }
 
     @Override
-    public ResponseEntity<List<ProfileResponse>> getProfile() {
-        return null;
+    public ResponseEntity<List<ProfileResponse>> getAllProfiles() {
+        return ResponseEntity.ok(profileService.getAllProfiles().stream().map(profileWebMapper::map).toList());
+    }
+
+    @Override
+    public ResponseEntity<ProfileResponse> getProfileByName(String name) {
+        ProfileResponse profileResponse = profileWebMapper.map(profileService.getProfileByName(name));
+        return ResponseEntity.ok(profileResponse);
     }
 }
