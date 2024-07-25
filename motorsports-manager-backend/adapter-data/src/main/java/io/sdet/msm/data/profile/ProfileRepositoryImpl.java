@@ -5,12 +5,12 @@ import io.sdet.msm.business.profile.ProfileRepository;
 import io.sdet.msm.exception.ProfileDuplicatedException;
 import io.sdet.msm.exception.ProfileNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 
-@Service
+@Repository
 @RequiredArgsConstructor
 public class ProfileRepositoryImpl implements ProfileRepository {
 

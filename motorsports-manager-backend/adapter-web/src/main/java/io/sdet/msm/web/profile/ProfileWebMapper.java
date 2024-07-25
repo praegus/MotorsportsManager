@@ -9,5 +9,6 @@ import org.mapstruct.Mapper;
 @Mapper
 public interface ProfileWebMapper {
     Profile map(ProfileRequest profileRequest);
+
     ProfileResponse map(Profile profile);
 }

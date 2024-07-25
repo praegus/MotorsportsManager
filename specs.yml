@@ -40,11 +40,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/ProfileResponse'
         404:
-          description: Profile not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: '#/components/responses/NotFoundResponse'
     post:
       summary: Create a new profile
       operationId: createProfile
@@ -61,19 +57,13 @@ paths:
           description: New profile created
           headers:
             location:
-              schema:
-                type: string
-              description: Location of the created profile
+              $ref: '#/components/headers/Location'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProfileResponse'
         409:
-          description: Profile already exists
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: '#/components/responses/ConflictResponse'
 
   /profiles/{name}:
     get:
@@ -94,7 +84,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProfileResponse'
-
   /organizations:
     get:
       summary: Get all organizations
@@ -110,7 +99,6 @@ paths:
                 type: object
                 items:
                   $ref: '#/components/schemas/OrganizationResponse'
-
     post:
       summary: Create a new organization
       operationId: createOrganization
@@ -127,19 +115,13 @@ paths:
           description: New organization created
           headers:
             location:
-              schema:
-                type: string
-              description: Location of the created organization
+              $ref: '#/components/headers/Location'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrganizationResponse'
         409:
-          description: Organization already exists
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: '#/components/responses/ConflictResponse'
 
   /organizations/{name}:
     get:
@@ -159,7 +141,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OrganizationResponse'
+                items:
+                  $ref: '#/components/schemas/OrganizationResponse'
+
 components:
   schemas:
     ChassisResponse:
@@ -169,13 +153,24 @@ components:
           type: string
         color:
           type: string
-    ProfileRequest:
+    ProfileResponse:
       type: object
       properties:
         name:
           $ref: '#/components/schemas/ProfileName'
-          nullable: false
-    ProfileResponse:
+    OrganizationRequest:
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/OrganizationName'
+        profile:
+          $ref: '#/components/schemas/ProfileRequest'
+    OrganizationResponse:
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/OrganizationName'
+    ProfileRequest:
       type: object
       properties:
         name:
@@ -187,17 +182,7 @@ components:
       example: 'MyProfile'
       minLength: 1
       maxLength: 10
-    OrganizationRequest:
-      type: object
-      properties:
-        name:
-          $ref: '#/components/schemas/OrganizationName'
-          nullable: false
-    OrganizationResponse:
-      type: object
-      properties:
-        name:
-          $ref: '#/components/schemas/OrganizationName'
+      nullable: false
     OrganizationName:
       description: 'Name of the organization to create'
       type: string
@@ -205,6 +190,7 @@ components:
       example: 'MyOrg'
       minLength: 1
       maxLength: 20
+      nullable: false
     ErrorResponse:
       type: object
       properties:
@@ -215,7 +201,7 @@ components:
           type: string
           description: a brief, human-readable message about the error
         status:
-          type: int
+          type: integer
           description: the HTTP response code (optional)
         detail:
           type: string
@@ -236,3 +222,21 @@ components:
         error:
           type: string
           description: the error message
+  responses:
+    NotFoundResponse:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    ConflictResponse:
+      description: Resource already exists
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  headers:
+    Location:
+      description: Location of the created resource
+      schema:
+        type: string

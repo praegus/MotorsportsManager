@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @Log4j2
 @RequiredArgsConstructor
-public class ProfileEndpoint implements ProfilesApi {
+public class ProfilesEndpoint implements ProfilesApi {
 
     private final ProfileService profileService;
     private final ProfileWebMapper profileWebMapper;
