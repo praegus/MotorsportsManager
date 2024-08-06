@@ -3,7 +3,7 @@ package io.sdet.msm.web.profile;
 import io.sdet.msm.api.ProfilesApi;
 import io.sdet.msm.business.profile.Profile;
 import io.sdet.msm.business.profile.ProfileService;
-import io.sdet.msm.model.ProfileRequest;
+import io.sdet.msm.model.CreateProfileRequest;
 import io.sdet.msm.model.ProfileResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -23,8 +23,8 @@ public class ProfileEndpoint implements ProfilesApi {
     private final ProfileWebMapper profileWebMapper;
 
     @Override
-    public ResponseEntity<ProfileResponse> createProfile(ProfileRequest profileRequest) {
-        Profile profile = profileWebMapper.map(profileRequest);
+    public ResponseEntity<ProfileResponse> createProfile(CreateProfileRequest createProfileRequest) {
+        Profile profile = profileWebMapper.map(createProfileRequest);
 
         Profile createdProfile = profileService.createProfile(profile);
 

@@ -40,40 +40,26 @@ paths:
                 items:
                   $ref: '#/components/schemas/ProfileResponse'
         404:
-          description: Profile not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: '#/components/responses/NotFoundResponse'
     post:
       summary: Create a new profile
       operationId: createProfile
       tags:
         - profile
       requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ProfileRequest'
+        $ref: '#/components/requestBodies/ProfileRequest'
       responses:
         201:
           description: New profile created
           headers:
             location:
-              schema:
-                type: string
-              description: Location of the created profile
+              $ref: '#/components/headers/Location'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProfileResponse'
         409:
-          description: Profile already exists
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: '#/components/responses/ConflictResponse'
 
   /profiles/{name}:
     get:
@@ -103,17 +89,50 @@ components:
           type: string
         color:
           type: string
-    ProfileRequest:
-      type: object
-      properties:
-        name:
-          $ref: '#/components/schemas/ProfileName'
-          nullable: false
     ProfileResponse:
       type: object
       properties:
         name:
           $ref: '#/components/schemas/ProfileName'
+        seasons:
+          $ref: '#/components/schemas/Seasons'
+    Seasons:
+      type: array
+      items:
+        $ref: '#/components/schemas/Season'
+    Season:
+      type: object
+      properties:
+        racingClass:
+          type: string
+        money:
+          type: integer
+          format: int32
+        car:
+          $ref: '#/components/schemas/Car'
+        tracks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Track'
+    Car:
+      type: object
+      properties:
+        wheels:
+          type: string
+        engine:
+          type: string
+        chassis:
+          type: string
+    Track:
+      type: object
+      properties:
+        name:
+          type: string
+        status:
+          type: string
+        prizeMoney:
+          type: integer
+          format: int32
     ProfileName:
       description: 'Name of the profile to create'
       type: string
@@ -131,7 +150,7 @@ components:
           type: string
           description: a brief, human-readable message about the error
         status:
-          type: int
+          type: integer
           description: the HTTP response code (optional)
         detail:
           type: string
@@ -152,3 +171,32 @@ components:
         error:
           type: string
           description: the error message
+  requestBodies:
+    ProfileRequest:
+      description: Json object containing profile name
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                $ref: '#/components/schemas/ProfileName'
+  responses:
+    NotFoundResponse:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    ConflictResponse:
+      description: Resource already exists
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  headers:
+    Location:
+      description: Location of the created resource
+      schema:
+        type: string
