@@ -103,18 +103,20 @@ components:
     Season:
       type: object
       properties:
+        name:
+          type: string
         racingClass:
           type: string
-        money:
+        accountBalance:
           type: integer
           format: int32
-        car:
-          $ref: '#/components/schemas/Car'
+        vehicle:
+          $ref: '#/components/schemas/Vehicle'
         tracks:
           type: array
           items:
             $ref: '#/components/schemas/Track'
-    Car:
+    Vehicle:
       type: object
       properties:
         wheels:

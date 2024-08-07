@@ -26,14 +26,14 @@ public class ProfileEndpoint implements ProfilesApi {
     public ResponseEntity<ProfileResponse> createProfile(CreateProfileRequest createProfileRequest) {
         Profile profile = profileWebMapper.map(createProfileRequest);
 
-        Profile createdProfile = profileService.createProfile(profile);
+        Profile createdSeason = profileService.createProfile(profile);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{name}")
-                .buildAndExpand(createdProfile.getName().toLowerCase())
+                .buildAndExpand(createdSeason.getName().toLowerCase())
                 .toUri();
 
-        return ResponseEntity.created(location).body(profileWebMapper.map(createdProfile));
+        return ResponseEntity.created(location).body(profileWebMapper.map(createdSeason));
     }
 
     @Override

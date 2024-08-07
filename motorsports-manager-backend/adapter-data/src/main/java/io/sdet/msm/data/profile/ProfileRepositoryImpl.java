@@ -5,12 +5,11 @@ import io.sdet.msm.business.profile.ProfileRepository;
 import io.sdet.msm.exception.ProfileDuplicatedException;
 import io.sdet.msm.exception.ProfileNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
+import org.springframework.stereotype.Repository;
 import java.util.List;
 
 
-@Service
+@Repository
 @RequiredArgsConstructor
 public class ProfileRepositoryImpl implements ProfileRepository {
 
@@ -21,7 +20,7 @@ public class ProfileRepositoryImpl implements ProfileRepository {
     public Profile getProfile(String name) {
         return profileDataMapper.map(profileRepositoryJPA
                 .findByNameIgnoreCase(name)
-                .orElseThrow(() -> new ProfileNotFoundException("Profile with name '" + name + "' not found")));
+                .orElseThrow(() -> new ProfileNotFoundException("Season with name '" + name + "' not found")));
     }
 
     @Override
@@ -33,7 +32,7 @@ public class ProfileRepositoryImpl implements ProfileRepository {
        to throw an exception if this is the case.
 */
         if (profileRepositoryJPA.findByNameIgnoreCase(profile.getName()).isPresent()) {
-            throw new ProfileDuplicatedException("Profile with name '" + profile.getName() + "' already exists");
+            throw new ProfileDuplicatedException("Season with name '" + profile.getName() + "' already exists");
         }
 
         return profileDataMapper.map
