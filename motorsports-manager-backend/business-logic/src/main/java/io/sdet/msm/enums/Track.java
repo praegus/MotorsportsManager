@@ -1,2 +1,4 @@
-package io.sdet.msm.enums;public enum Track {
+package io.sdet.msm.enums;
+
+public enum Track {
 }

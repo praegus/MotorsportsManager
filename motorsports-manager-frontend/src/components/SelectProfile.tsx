@@ -1,5 +1,5 @@
 import {useState, FormEvent} from 'react'
-import {ProfileApi, ProfileRequest, ProfileResponse, ResponseError, ErrorResponse, FieldError} from "../generated-sources";
+import {ProfileApi, CreateProfileRequest, ProfileResponse, ResponseError, ErrorResponse, FieldError} from "../generated-sources";
 import {useRouter} from 'next/router'
 import {ErrorUtil} from '../utils'
 
@@ -17,7 +17,7 @@ export default function SelectProfile() {
         const chosenName = (formData.get("name")! as string);
         console.log((event.nativeEvent as SubmitEvent).submitter)
 
-        var action = ((event.nativeEvent as SubmitEvent).submitter as HTMLInputElement).value;
+      let action = ((event.nativeEvent as SubmitEvent).submitter as HTMLInputElement).value;
         switch (action) {
           case 'create': 
             createProfile(chosenName);
@@ -33,12 +33,12 @@ export default function SelectProfile() {
   }
   async function createProfile(name: string) {
     try {
-      var profileRequest:ProfileRequest = {
+      let createProfileRequest:CreateProfileRequest = {
           name: name
       };
 
       await profileApi.createProfile({
-          profileRequest: profileRequest
+          createProfileRequest: createProfileRequest
       }).then(() => {
           router.push(`profile?name=${name}`)
       });

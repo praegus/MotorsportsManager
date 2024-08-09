@@ -1,2 +1,4 @@
-package io.sdet.msm.enums;public enum RacingClass {
+package io.sdet.msm.enums;
+
+public enum RacingClass {
 }
