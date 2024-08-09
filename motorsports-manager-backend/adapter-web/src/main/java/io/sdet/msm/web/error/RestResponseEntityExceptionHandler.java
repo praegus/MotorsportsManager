@@ -2,6 +2,7 @@ package io.sdet.msm.web.error;
 
 import io.sdet.msm.exception.ProfileDuplicatedException;
 import io.sdet.msm.exception.ProfileNotFoundException;
+import io.sdet.msm.exception.SeasonDuplicatedException;
 import io.sdet.msm.model.ErrorResponse;
 import io.sdet.msm.model.FieldError;
 import jakarta.validation.ConstraintViolationException;
@@ -33,6 +34,11 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     @ExceptionHandler(ProfileNotFoundException.class)
     protected ResponseEntity<Object> handleProfileNotFound(ProfileNotFoundException ex) {
         return buildErrorResponse(HttpStatus.NOT_FOUND, ex.getMessage(), "Season not found", "profile-not-found");
+    }
+
+    @ExceptionHandler(SeasonDuplicatedException.class)
+    protected ResponseEntity<Object> handleSeasonDuplicated(SeasonDuplicatedException ex) {
+        return buildErrorResponse(HttpStatus.CONFLICT, ex.getMessage(), "Duplicated season", "season-duplicated");
     }
 
     @ExceptionHandler(ConstraintViolationException.class)

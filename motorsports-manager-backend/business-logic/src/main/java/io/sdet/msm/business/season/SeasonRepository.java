@@ -2,7 +2,7 @@ package io.sdet.msm.business.season;
 
 public interface SeasonRepository {
 
-    Season getSeason(String name);
+    Season createSeason(Season season);
 
-    Season createSeason(io.sdet.msm.business.season.Season season);
+    Season getSeasonById(String name);
 }

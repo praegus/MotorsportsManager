@@ -14,6 +14,7 @@ import java.util.Set;
 @Data
 @Table(name = "profiles")
 public class ProfileEntity {
+
     @Id
     private String name;
 
@@ -26,11 +27,11 @@ public class ProfileEntity {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
-            name = "profiles_seasons",
+            name = "profile_season",
             joinColumns = {@JoinColumn(name = "profile_name")},
-            inverseJoinColumns = {@JoinColumn(name = "season_id")}
+            inverseJoinColumns = {@JoinColumn(name = "season_name")}
     )
     private Set<SeasonEntity> seasons;
 }

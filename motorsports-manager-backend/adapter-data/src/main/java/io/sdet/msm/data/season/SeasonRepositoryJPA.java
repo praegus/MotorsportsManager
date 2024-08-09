@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface SeasonRepositoryJPA extends JpaRepository<SeasonEntity, Long> {
+public interface SeasonRepositoryJPA extends JpaRepository<SeasonEntity, String> {
     Optional<SeasonEntity> findByNameIgnoreCase(String name);
 }
