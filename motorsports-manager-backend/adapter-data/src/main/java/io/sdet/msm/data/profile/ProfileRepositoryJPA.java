@@ -7,5 +7,6 @@ import java.util.Optional;
 
 @Repository
 public interface ProfileRepositoryJPA extends JpaRepository<ProfileEntity, String> {
+
     Optional<ProfileEntity> findByNameIgnoreCase(String name);
 }

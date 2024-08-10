@@ -15,9 +15,11 @@ public class Season {
 
     private String name;
 
+    private String racingClass;
+
+    private Integer accountBalance;
+
     private Vehicle vehicle;
 
     private List<Track> tracks;
-
-    private Set<Profile> profiles;
 }

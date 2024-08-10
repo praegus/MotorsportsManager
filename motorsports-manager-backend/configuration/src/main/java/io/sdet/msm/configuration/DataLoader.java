@@ -18,6 +18,6 @@ public class DataLoader implements ApplicationRunner {
 
     public void run(ApplicationArguments args) {
         log.info("Dataloader is loading initial season");
-        seasonRepository.createSeason(Season.builder().name("2024-2025").build());
+        seasonRepository.createSeason(Season.builder().name("2024-2025").accountBalance(10000).build());
     }
 }

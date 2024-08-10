@@ -4,7 +4,7 @@ import io.sdet.msm.data.profile.ProfileEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Data
@@ -16,10 +16,10 @@ public class SeasonEntity {
 
     private String racingClass;
 
-    private String accountBalance;
+    private Integer accountBalance;
 
-    private String Vehicle;
+    private String vehicle;
 
-    @ManyToMany(mappedBy = "seasons", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private Set<ProfileEntity> profiles;
+    @ManyToMany(mappedBy = "seasons", cascade = {CascadeType.PERSIST, CascadeType.PERSIST})
+    private List<ProfileEntity> profiles;
 }

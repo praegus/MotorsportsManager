@@ -7,7 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 
 @Entity
@@ -33,5 +33,5 @@ public class ProfileEntity {
             joinColumns = {@JoinColumn(name = "profile_name")},
             inverseJoinColumns = {@JoinColumn(name = "season_name")}
     )
-    private Set<SeasonEntity> seasons;
+    private List<SeasonEntity> seasons;
 }

@@ -5,10 +5,8 @@ import io.sdet.msm.business.season.SeasonService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 @Slf4j
@@ -27,11 +25,12 @@ public class ProfileService {
         return profileRepository.getProfile(profile);
     }
 
-    @Transactional
     public Profile createProfile(Profile profile) {
         //Season with name "2024-2025" has been loaded on application start up through the DataLoader class.
         //So we can retrieve and use it.
-        profile.setSeasons(Set.of(seasonRepository.getSeasonById(INITIAL_SEASON_NAME)));
+        profile.setSeasons(List.of(seasonRepository.getSeasonById(INITIAL_SEASON_NAME)));
+
+        seasonRepository.getSeasonById(INITIAL_SEASON_NAME);
 
         return profileRepository.createProfile(profile);
 

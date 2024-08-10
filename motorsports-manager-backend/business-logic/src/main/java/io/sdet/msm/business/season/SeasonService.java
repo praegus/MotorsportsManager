@@ -11,7 +11,6 @@ public class SeasonService {
     private final SeasonRepository seasonRepository;
 
     public Season createSeason(Season season) {
-        log.info(this.getClass() + ": Creating season {}", season);
         return seasonRepository.createSeason(season);
     }
 }
