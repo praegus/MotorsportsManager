@@ -33,7 +33,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 
     @ExceptionHandler(ProfileNotFoundException.class)
     protected ResponseEntity<Object> handleProfileNotFound(ProfileNotFoundException ex) {
-        return buildErrorResponse(HttpStatus.NOT_FOUND, ex.getMessage(), "Season not found", "profile-not-found");
+        return buildErrorResponse(HttpStatus.NOT_FOUND, ex.getMessage(), "Profile not found", "profile-not-found");
     }
 
     @ExceptionHandler(SeasonDuplicatedException.class)

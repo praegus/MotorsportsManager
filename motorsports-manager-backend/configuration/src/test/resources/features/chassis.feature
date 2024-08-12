@@ -6,12 +6,7 @@ Feature: chassis
     """
     [
       {
-        "name": "pretty",
-        "color": "red"
-      },
-      {
-        "name": "strong",
-        "color": "yellow"
+        "name": "STOCK"
       }
     ]
     """
