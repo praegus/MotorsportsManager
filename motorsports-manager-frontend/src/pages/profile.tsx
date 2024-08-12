@@ -1,4 +1,6 @@
-import ShowProfile from '../components/ShowProfile';
+import ShowSeason from '../components/ShowSeason';
+import ManageTracks from '../components/ManageTracks';
+import ManageVehicle from '../components/ManageVehicle';
 import {useState, useEffect} from 'react'
 import NavBar from '../components/NavBar';
 import {ErrorResponse, ProfileApi, ProfileResponse} from '@/generated-sources';
@@ -13,22 +15,44 @@ export default function Profile() {
 
   useEffect(() => {
     const fetchData = async() => {
+      var profileName = 
+        Array.isArray(router.query.name)? router.query.name[0] : 
+        router.query.name!;
       try {
         var profiles = await profileApi.getProfileByName({
-          name: router.query.name
+          name: profileName
         });
         setData(profiles);
       } catch (errResponse: any) {
         ErrorUtil.retrieveErrorMessage(errResponse, (json: ErrorResponse) => setErrorResponse(json))
       }
     }
-    fetchData();
-  }, []);
+    if(router.isReady) fetchData();
+  }, [router.isReady]);
 
   return (
       <div>
-        <NavBar />
-        { data? <ShowProfile data={data} /> : 'no data' }
+        <NavBar data={data?.name} />
+        { data && data.seasonRegistrations && data.seasonRegistrations[0].vehicle && data.seasonRegistrations[0].trackRecords? 
+        <div>
+          <div className="w-full flex">
+            <div className="flex-1">
+              <ShowSeason data={data.seasonRegistrations[0]} />
+            </div>
+            <div className="flex-1">
+              <ManageVehicle data={data.seasonRegistrations[0].vehicle} />
+            </div>
+            <div className="flex-1">
+              <ManageTracks data={data.seasonRegistrations[0].trackRecords} /> 
+            </div>
+          </div>
+          <div className="w-full flex flex-col items-center">
+            <div>
+              <button>Race!</button>
+            </div>
+          </div>
+        </div>
+        : 'no data' }
     </div>
   );
 };
