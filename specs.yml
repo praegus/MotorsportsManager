@@ -94,13 +94,11 @@ components:
       properties:
         name:
           $ref: '#/components/schemas/ProfileName'
-        seasons:
-          $ref: '#/components/schemas/Seasons'
-    Seasons:
-      type: array
-      items:
-        $ref: '#/components/schemas/Season'
-    Season:
+        seasonRegistrations:
+          type: array
+          items:
+            $ref: '#/components/schemas/SeasonRegistrationResponse'
+    SeasonRegistrationResponse:
       type: object
       properties:
         name:
@@ -111,12 +109,12 @@ components:
           type: integer
           format: int32
         vehicle:
-          $ref: '#/components/schemas/Vehicle'
-        tracks:
+          $ref: '#/components/schemas/VehicleResponse'
+        trackRecords:
           type: array
           items:
-            $ref: '#/components/schemas/Track'
-    Vehicle:
+            $ref: '#/components/schemas/TrackRecordResponse'
+    VehicleResponse:
       type: object
       properties:
         wheels:
@@ -125,7 +123,7 @@ components:
           type: string
         chassis:
           type: string
-    Track:
+    TrackRecordResponse:
       type: object
       properties:
         name:

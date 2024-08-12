@@ -1,9 +1,6 @@
-package io.sdet.msm.data.vehicle;
+package io.sdet.msm.data.profile;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -15,12 +12,13 @@ public class VehicleEntity {
     @GeneratedValue
     private Integer id;
 
-    private String name;
-
     private String wheels;
 
     private String engine;
 
     private String chassis;
+
+    @OneToOne(mappedBy = "vehicle")
+    private SeasonRegistrationEntity seasonRegistration;
 
 }

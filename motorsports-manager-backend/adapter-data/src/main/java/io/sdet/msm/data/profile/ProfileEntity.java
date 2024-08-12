@@ -1,11 +1,11 @@
 package io.sdet.msm.data.profile;
 
-import io.sdet.msm.data.season.SeasonEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,6 +16,9 @@ import java.util.List;
 public class ProfileEntity {
 
     @Id
+    @GeneratedValue
+    private Long id;
+
     private String name;
 
     @CreationTimestamp
@@ -27,11 +30,14 @@ public class ProfileEntity {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(
-            name = "profile_season",
-            joinColumns = {@JoinColumn(name = "profile_name")},
-            inverseJoinColumns = {@JoinColumn(name = "season_name")}
-    )
-    private List<SeasonEntity> seasons;
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
+    private List<SeasonRegistrationEntity> seasonRegistrations = new ArrayList<>();
+
+    /**
+     * overwrite mapstruct generated method so we can immediately setup up the link between child and parents
+     */
+    public void setSeasonRegistrations(List<SeasonRegistrationEntity> list) {
+        list.forEach(l -> l.setProfile(this));
+        this.seasonRegistrations = list;
+    }
 }

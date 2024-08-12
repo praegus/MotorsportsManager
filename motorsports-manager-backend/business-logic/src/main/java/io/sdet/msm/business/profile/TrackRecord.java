@@ -1,11 +1,11 @@
-package io.sdet.msm.business.track;
+package io.sdet.msm.business.profile;
 
 import lombok.Builder;
 import lombok.Data;
 
 @Builder
 @Data
-public class Track {
+public class TrackRecord {
     private String name;
 
     private String status;

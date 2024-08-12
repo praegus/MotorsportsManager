@@ -28,12 +28,6 @@ public class ProfileRepositoryImpl implements ProfileRepository {
 
     @Override
     public Profile createProfile(Profile profile) {
-
-/*
-       The repository save method creates when profile doesn't exist and update when a
-       profile already exists! So we check if a profile already exists first in order
-       to throw an exception if this is the case.
-*/
         if (profileRepositoryJPA.findByNameIgnoreCase(profile.getName()).isPresent()) {
             throw new ProfileDuplicatedException("Profile with name '" + profile.getName() + "' already exists");
         }
