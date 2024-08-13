@@ -2,7 +2,6 @@ package io.sdet.msm.data.profile;
 
 import io.sdet.msm.business.profile.*;
 import org.mapstruct.Mapper;
-import org.mapstruct.ValueMapping;
 
 @Mapper(componentModel = "spring")
 public interface ProfileDataMapper {
