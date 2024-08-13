@@ -21,7 +21,9 @@ export default function NavBar({data}: Props) {
         &nbsp;
       </div>
       <div className="flex-none w-32">
+        { data? 
         <p>Welcome! {data}</p>
+        : ''}
       </div>
     </div>
   );

@@ -1,9 +1,6 @@
 package io.sdet.msm.web.profile;
 
-import io.sdet.msm.business.profile.Profile;
-import io.sdet.msm.business.profile.SeasonRegistration;
-import io.sdet.msm.business.profile.TrackRecord;
-import io.sdet.msm.business.profile.Vehicle;
+import io.sdet.msm.business.profile.*;
 import io.sdet.msm.model.*;
 import org.mapstruct.Mapper;
 
@@ -17,6 +14,8 @@ public interface ProfileWebMapper {
     SeasonRegistrationResponse map(SeasonRegistration profile);
 
     TrackRecordResponse map(TrackRecord profile);
+
+    String map(TrackStatus profile);
 
     VehicleResponse map(Vehicle profile);
 }

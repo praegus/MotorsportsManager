@@ -24,7 +24,10 @@ Feature: profiles
                 "chassis": "STOCK"
             },
             "trackRecords": [
-
+                {
+                    "name": "TUTORIAL",
+                    "status": "UPCOMING"
+                }
             ]
         }
       ]

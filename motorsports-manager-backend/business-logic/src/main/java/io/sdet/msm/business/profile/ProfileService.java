@@ -1,21 +1,16 @@
 package io.sdet.msm.business.profile;
 
-import io.sdet.msm.enums.Chassis;
-import io.sdet.msm.enums.Engine;
-import io.sdet.msm.enums.RacingClass;
-import io.sdet.msm.enums.Wheels;
+import io.sdet.msm.enums.*;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @Slf4j
 @AllArgsConstructor
 public class ProfileService {
-    public static final String INITIAL_SEASON_NAME = "2024-2025";
     private final ProfileRepository profileRepository;
 
     public List<Profile> getAllProfiles() {
@@ -35,10 +30,15 @@ public class ProfileService {
 
         var defaultSeason = SeasonRegistration.builder()
                 .accountBalance(0)
-                .name(INITIAL_SEASON_NAME)
-                .racingClass(RacingClass.GO_KART)
+                .name(Season.DEFAULT.getName())
+                .racingClass(Season.DEFAULT.getRacingClass())
                 .vehicle(defaultVehicle)
-                .trackRecords(new ArrayList<>())
+                .trackRecords(Season.DEFAULT.getTracks().stream().findFirst().stream()
+                        .map(t -> TrackRecord.builder()
+                                .name(t.name())
+                                .status(TrackStatus.UPCOMING)
+                                .build())
+                        .toList())
                 .build();
 
         profile.setSeasonRegistrations(List.of(defaultSeason));

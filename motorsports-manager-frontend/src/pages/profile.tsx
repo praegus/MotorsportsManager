@@ -46,11 +46,6 @@ export default function Profile() {
               <ManageTracks data={data.seasonRegistrations[0].trackRecords} /> 
             </div>
           </div>
-          <div className="w-full flex flex-col items-center">
-            <div>
-              <button>Race!</button>
-            </div>
-          </div>
         </div>
         : 'no data' }
     </div>

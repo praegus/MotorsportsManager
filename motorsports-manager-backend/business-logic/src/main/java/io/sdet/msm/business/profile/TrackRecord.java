@@ -8,7 +8,7 @@ import lombok.Data;
 public class TrackRecord {
     private String name;
 
-    private String status;
+    private TrackStatus status;
 
     private Integer prizeMoney;
 }
