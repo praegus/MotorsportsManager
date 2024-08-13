@@ -1,6 +1,7 @@
 package io.sdet.msm.data.profile;
 
 import io.sdet.msm.business.profile.*;
+import io.sdet.msm.enums.TrackStatus;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

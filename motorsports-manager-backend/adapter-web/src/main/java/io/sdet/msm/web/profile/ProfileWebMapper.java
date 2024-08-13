@@ -1,6 +1,7 @@
 package io.sdet.msm.web.profile;
 
 import io.sdet.msm.business.profile.*;
+import io.sdet.msm.enums.TrackStatus;
 import io.sdet.msm.model.*;
 import org.mapstruct.Mapper;
 

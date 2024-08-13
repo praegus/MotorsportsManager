@@ -1,4 +1,4 @@
-package io.sdet.msm.business.profile;
+package io.sdet.msm.enums;
 
 public enum TrackStatus {
     UPCOMING,
