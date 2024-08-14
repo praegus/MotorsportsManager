@@ -5,13 +5,23 @@ info:
   description: The ultimate gaming experience
   contact:
     name: SDET
+    url: https://www.praegus.nl
     email: sdet@praegus.nl
+  license:
+    name: "Apache 2.0"
+    url: "https://www.apache.org/licenses/LICENSE-2.0"
+tags:
+  - name: chassis
+    description: Endpoints related to chassis
+  - name: profile
+    description: Endpoints related to profiles
 servers:
   - url: http://localhost:8080
 paths:
   /chassis:
     get:
       summary: Get all chassis
+      description: Endpoint to retrieve all chassis
       operationId: getChassis
       tags:
         - chassis
@@ -27,6 +37,7 @@ paths:
   /profiles:
     get:
       summary: Get all profiles
+      description: Endpoint to retrieve all profiles
       operationId: getAllProfiles
       tags:
         - profile
@@ -36,13 +47,14 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                type: array
                 items:
                   $ref: '#/components/schemas/ProfileResponse'
         404:
           $ref: '#/components/responses/NotFoundResponse'
     post:
       summary: Create a new profile
+      description: Endpoint to create a new profile
       operationId: createProfile
       tags:
         - profile
@@ -64,6 +76,7 @@ paths:
   /profiles/{name}:
     get:
       summary: Retrieve a profile by name
+      description: Get a profile by name
       operationId: getProfileByName
       tags:
         - profile
@@ -73,6 +86,7 @@ paths:
           required: true
           schema:
             $ref: '#/components/schemas/ProfileName'
+          description: Name of the profile to retrieve
       responses:
         200:
           description: Response profile object
