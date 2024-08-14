@@ -33,7 +33,7 @@ export default function Profile() {
   return (
       <div>
         <NavBar data={data?.name} />
-        { data && data.seasonRegistrations && data.seasonRegistrations[0].vehicle && data.seasonRegistrations[0].trackRecords? 
+        { data && data.seasonRegistrations && data.seasonRegistrations[0].vehicle && data.seasonRegistrations[0].trackInfo?
         <div>
           <div className="w-full flex">
             <div className="flex-1">
@@ -43,7 +43,7 @@ export default function Profile() {
               <ManageVehicle data={data.seasonRegistrations[0].vehicle} />
             </div>
             <div className="flex-1">
-              <ManageTracks data={data.seasonRegistrations[0].trackRecords} /> 
+              <ManageTracks data={data.seasonRegistrations[0].trackInfo} />
             </div>
           </div>
         </div>
