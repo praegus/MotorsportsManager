@@ -18,5 +18,5 @@ public class SeasonRegistration {
 
     private Vehicle vehicle;
 
-    private List<TrackRecord> trackRecords;
+    private List<TrackInfo> trackInfo;
 }

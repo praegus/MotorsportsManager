@@ -6,8 +6,8 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "trackRecords")
-public class TrackRecordEntity {
+@Table(name = "trackInfos")
+public class TrackInfoEntity{
 
     @Id
     @GeneratedValue

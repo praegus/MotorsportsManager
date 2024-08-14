@@ -8,13 +8,13 @@ import org.mapstruct.Mapper;
 public interface ProfileDataMapper {
     ProfileEntity map(Profile profile);
     VehicleEntity map(Vehicle vehicle);
-    TrackRecordEntity map(TrackRecord value);
+    TrackInfoEntity map(TrackInfo value);
     String map(TrackStatus status);
     SeasonRegistrationEntity map(SeasonRegistration value);
 
     Profile map(ProfileEntity profileEntity);
     Vehicle map(VehicleEntity vehicle);
-    TrackRecord map(TrackRecordEntity value);
+    TrackInfo map(TrackInfoEntity trackInfoEntity);
     TrackStatus map(String status);
-    SeasonRegistration map(SeasonRegistrationEntity value);
+    SeasonRegistration map(SeasonRegistrationEntity seasonRegistrationEntity);
 }

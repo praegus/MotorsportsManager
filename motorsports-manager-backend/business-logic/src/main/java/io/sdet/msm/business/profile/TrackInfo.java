@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Builder
 @Data
-public class TrackRecord {
+public class TrackInfo {
     private String name;
 
     private TrackStatus status;

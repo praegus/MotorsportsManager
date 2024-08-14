@@ -23,7 +23,7 @@ Feature: profiles
                 "engine": "STOCK",
                 "chassis": "STOCK"
             },
-            "trackRecords": [
+            "trackInfo": [
                 {
                     "name": "TUTORIAL",
                     "status": "UPCOMING"

@@ -30,10 +30,10 @@ public class SeasonRegistrationEntity {
     private VehicleEntity vehicle;
 
     @OneToMany(mappedBy = "seasonRegistration", cascade = CascadeType.ALL)
-    private List<TrackRecordEntity> trackRecords = new ArrayList<>();
+    private List<TrackInfoEntity> trackInfo = new ArrayList<>();
 
-    public void setTrackRecords(List<TrackRecordEntity> list) {
+    public void setTrackInfo(List<TrackInfoEntity> list) {
         list.forEach(l -> l.setSeasonRegistration(this));
-        this.trackRecords = list;
+        this.trackInfo = list;
     }
 }

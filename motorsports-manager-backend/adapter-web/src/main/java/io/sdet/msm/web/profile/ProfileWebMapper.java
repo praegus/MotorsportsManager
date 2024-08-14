@@ -12,11 +12,11 @@ public interface ProfileWebMapper {
 
     ProfileResponse map(Profile profile);
 
-    SeasonRegistrationResponse map(SeasonRegistration profile);
+    SeasonRegistrationResponse map(SeasonRegistration seasonRegistration);
 
-    TrackRecordResponse map(TrackRecord profile);
+    TrackInfoResponse map(TrackInfo trackInfo);
 
-    String map(TrackStatus profile);
+    String map(TrackStatus trackStatus);
 
     VehicleResponse map(Vehicle profile);
 }
