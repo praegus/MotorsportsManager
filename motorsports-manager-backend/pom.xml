@@ -34,7 +34,7 @@
         <swagger-annotations.version>2.2.22</swagger-annotations.version>
         <jackson-databind.version>0.2.6</jackson-databind.version>
         <cucumber.version>7.18.1</cucumber.version>
-        <junit-platform.version>1.10.3</junit-platform.version>
+        <junit-platform.version>1.11.0</junit-platform.version>
         <springdoc.version>2.6.0</springdoc.version>
         <json-junit.version>3.4.1</json-junit.version>
         <wiremock.version>2.27.2</wiremock.version>
