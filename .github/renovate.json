@@ -27,6 +27,5 @@
     "io.sdet.msm:business-logic",
     "io.sdet.msm:adapter-data",
     "io.sdet.msm:adapter-web"
-  ],
-  "useBaseBranchConfig": "merge"
+  ]
 }
