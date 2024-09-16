@@ -22,3 +22,5 @@ jobs:
           token: ${{ secrets.RENOVATE_TOKEN }}
         env:
           LOG_LEVEL: 'info'
+          RENOVATE_USERNAME: "renovate[bot]"
+          RENOVATE_ONBOARDING: "false"
