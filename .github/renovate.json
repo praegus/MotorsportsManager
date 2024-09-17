@@ -26,7 +26,6 @@
     "io.sdet.msm:msm-backend",
     "io.sdet.msm:business-logic",
     "io.sdet.msm:adapter-data",
-    "io.sdet.msm:adapter-graphql",
     "io.sdet.msm:adapter-web"
   ]
 }

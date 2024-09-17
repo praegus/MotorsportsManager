@@ -13,7 +13,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.2</version>
+        <version>3.3.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -27,11 +27,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>17</java.version>
         <spring.version>6.0.3</spring.version>
-        <spring-boot.version>3.3.2</spring-boot.version>
+        <spring-boot.version>3.3.3</spring-boot.version>
         <spring-cloud.version>2023.0.3</spring-cloud.version>
-        <org.mapstruct.version>1.6.0</org.mapstruct.version>
-        <openapi-generator.version>7.7.0</openapi-generator.version>
-        <swagger-annotations.version>2.2.22</swagger-annotations.version>
+        <org.mapstruct.version>1.6.2</org.mapstruct.version>
+        <openapi-generator.version>7.8.0</openapi-generator.version>
+        <swagger-annotations.version>2.2.23</swagger-annotations.version>
         <jackson-databind.version>0.2.6</jackson-databind.version>
         <cucumber.version>7.18.1</cucumber.version>
         <junit-platform.version>1.11.0</junit-platform.version>
