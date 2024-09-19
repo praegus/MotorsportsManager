@@ -6,10 +6,13 @@ spring:
     driverClassName: org.h2.Driver
   jpa:
     show-sql: true
+    properties:
+      hibernate.format_sql: true
     hibernate:
       ddl-auto: create-drop
   liquibase:
     change-log: classpath:liquibase/changelog-master.yaml
+    enabled: false
   h2:
     console:
       enabled: true

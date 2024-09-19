@@ -1,8 +1,8 @@
 package io.sdet.msm.web.chassis;
 
 import io.sdet.msm.api.ChassisApi;
+import io.sdet.msm.enums.Chassis;
 import io.sdet.msm.model.ChassisResponse;
-import io.sdet.msm.business.chassis.Chassis;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +19,7 @@ public class ChassisEndpoint implements ChassisApi {
         return ResponseEntity.ok().body(
                 Arrays.stream(Chassis.values()).map(c -> {
             var response = new ChassisResponse();
-            response.setColor(c.getColor());
-            response.setName(c.getName());
+            response.setName(c.name());
             return response;
         }).toList()
         );

@@ -5,13 +5,15 @@ import io.sdet.msm.business.profile.ProfileRepository;
 import io.sdet.msm.exception.ProfileDuplicatedException;
 import io.sdet.msm.exception.ProfileNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 
-@Service
+@Repository
 @RequiredArgsConstructor
+@Slf4j
 public class ProfileRepositoryImpl implements ProfileRepository {
 
     private final ProfileRepositoryJPA profileRepositoryJPA;
@@ -26,18 +28,11 @@ public class ProfileRepositoryImpl implements ProfileRepository {
 
     @Override
     public Profile createProfile(Profile profile) {
-
-/*
-       The repository save method creates when profile doesn't exist and update when a
-       profile already exists! So we check if a profile already exists first in order
-       to throw an exception if this is the case.
-*/
         if (profileRepositoryJPA.findByNameIgnoreCase(profile.getName()).isPresent()) {
             throw new ProfileDuplicatedException("Profile with name '" + profile.getName() + "' already exists");
         }
 
-        return profileDataMapper.map
-                (profileRepositoryJPA.save(profileDataMapper.map(profile)));
+        return profileDataMapper.map(profileRepositoryJPA.save(profileDataMapper.map(profile)));
     }
 
     @Override

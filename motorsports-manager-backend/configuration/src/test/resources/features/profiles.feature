@@ -12,7 +12,25 @@ Feature: profiles
     And I should receive a response containing:
     """
     {
-      "name": "Johan"
+      "name": "Johan",
+      "seasonRegistrations": [
+        {
+            "name": "2024-2025",
+            "racingClass": "GO_KART",
+            "accountBalance": 0,
+            "vehicle": {
+                "wheels": "STOCK",
+                "engine": "STOCK",
+                "chassis": "STOCK"
+            },
+            "trackInfo": [
+                {
+                    "name": "TUTORIAL",
+                    "status": "UPCOMING"
+                }
+            ]
+        }
+      ]
     }
     """
 
@@ -77,7 +95,8 @@ Feature: profiles
     And I should receive a response containing:
     """
     {
-      "name": "<existingProfile>"
+      "name": "<existingProfile>",
+      "seasonRegistrations": []
     }
     """
     Examples:
@@ -108,10 +127,12 @@ Feature: profiles
     """
     [
     {
-      "name": "pro"
+      "name": "pro",
+      "seasonRegistrations": []
     },
     {
-      "name": "propro"
+      "name": "propro",
+      "seasonRegistrations": []
     }
     ]
     """
