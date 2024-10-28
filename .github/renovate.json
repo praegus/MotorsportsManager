@@ -16,7 +16,7 @@
         "patch"
       ],
       "matchCurrentVersion": "!/^0/",
-      "automerge": false
+      "automerge": true
     }
   ],
   "major": {
