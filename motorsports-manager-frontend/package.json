@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@openapitools/openapi-generator-cli": "^2.13.4",
-    "next": "14.2.13",
+    "next": "14.2.16",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.1.0"
@@ -27,7 +27,7 @@
     "@typescript-eslint/parser": "6.21.0",
     "@vitejs/plugin-react": "^4.3.1",
     "eslint": "^8",
-    "eslint-config-next": "14.2.13",
+    "eslint-config-next": "14.2.16",
     "eslint-config-prettier": "^9.1.0",
     "jsdom": "^25.0.0",
     "postcss": "^8",
