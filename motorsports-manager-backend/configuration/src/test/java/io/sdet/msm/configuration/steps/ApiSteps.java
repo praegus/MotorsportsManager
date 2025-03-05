@@ -24,6 +24,11 @@ public class ApiSteps {
         response = baseRequest().body(body).contentType(ContentType.JSON).when().post(path);
     }
 
+    @When("I create {string}")
+    public void post(String path) {
+        response = baseRequest().when().post(path);
+    }
+
     @Then("I retrieve {string}")
     public void get(String path) {
         response = baseRequest().when().get(path);

@@ -1,8 +1,8 @@
 package io.sdet.msm.web.races;
 
 import io.sdet.msm.api.RacesApi;
-import io.sdet.msm.business.profile.ProfileService;
 import io.sdet.msm.business.races.RaceService;
+import io.sdet.msm.exception.RaceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,13 @@ public class RacesEndpoint implements RacesApi {
 
     @Override
     public ResponseEntity<Void> startRace(String raceId) {
-        raceService.startRace(raceId);
-        return ResponseEntity.noContent().build();
+        try {
+            raceService.startRace(raceId);
+            return ResponseEntity.noContent().build();
+        } catch (RaceNotFoundException e) {
+            log.warn(e);
+            return ResponseEntity.notFound().build();
+        }
+
     }
 }

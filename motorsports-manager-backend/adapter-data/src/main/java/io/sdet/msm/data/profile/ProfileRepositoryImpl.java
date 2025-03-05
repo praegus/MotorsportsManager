@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
 @Repository
 @RequiredArgsConstructor
 @Slf4j
@@ -40,5 +39,14 @@ public class ProfileRepositoryImpl implements ProfileRepository {
         return profileRepositoryJPA.findAll()
                 .stream().map(profileDataMapper::map)
                 .toList();
+    }
+
+    @Override
+    public void updateProfile(Profile profile) {
+        if (profileRepositoryJPA.findByNameIgnoreCase(profile.getName()).isEmpty()) {
+            throw new ProfileNotFoundException("Profile with name '" + profile.getName() + "' not found");
+        }
+        profileDataMapper.map(profileRepositoryJPA.save(profileDataMapper.map(profile)));
+        log.info("Profile: {} is updated", profile);
     }
 }
