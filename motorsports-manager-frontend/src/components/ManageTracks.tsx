@@ -5,8 +5,11 @@ type Props = {
   data: TrackInfoResponse[]
 }
 
-export default function ShowProfile({data}: Props) {
+export default function ManageTracks({data}: Props) {
   const router = useRouter();
+  async function startRace(){
+      console.log("hallo")
+      }
 
   return (
       <div className="w-full flex">
@@ -25,7 +28,7 @@ export default function ShowProfile({data}: Props) {
             <button>Buy info for 10€</button>
             <br />
             <br />
-            <button>Race!</button>
+            <button onClick={startRace}>Race!</button>
         </div>
     </div>
   );

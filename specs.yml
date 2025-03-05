@@ -72,7 +72,6 @@ paths:
                 $ref: '#/components/schemas/ProfileResponse'
         409:
           $ref: '#/components/responses/ConflictResponse'
-
   /profiles/{name}:
     get:
       summary: Retrieve a profile by name
@@ -99,6 +98,8 @@ paths:
       summary: Start a race
       description: Endpoint to start a race
       operationId: startRace
+      tags:
+        - race
       parameters:
         - name: raceId
           in: path
