@@ -24,7 +24,7 @@ public class RaceService {
     private final ProfileRepository profileRepository;
 
     public void startRace(String raceId) {
-        //todo: raceid is nu trackid. dit moet los race object worden
+        //raceid is nu trackid. dit moet los race object worden
         if (!Objects.equals(raceId, TUTORIAL.name())) {
             throw new RaceNotFoundException();
         }
