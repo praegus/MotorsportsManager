@@ -10,6 +10,9 @@ import lombok.Data;
 public class TrackInfoEntity{
 
     @Id
+    @GeneratedValue
+    private Integer id;
+
     private String name;
 
     private String status;

@@ -10,7 +10,7 @@ Feature: race
     """
     When I create "/races/TUTORIAL"
     Then I should receive a response with status code 204
-    When I retrieve "/profiles/johan"
+    When I retrieve "/profiles/Johan"
     And Json should contain these values:
     """
     {

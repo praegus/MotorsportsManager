@@ -16,6 +16,9 @@ import java.util.List;
 public class ProfileEntity {
 
     @Id
+    @GeneratedValue
+    private Long id;
+
     private String name;
 
     @CreationTimestamp

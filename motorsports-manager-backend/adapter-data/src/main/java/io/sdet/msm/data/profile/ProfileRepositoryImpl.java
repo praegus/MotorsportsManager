@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -43,8 +44,24 @@ public class ProfileRepositoryImpl implements ProfileRepository {
 
     @Override
     public void updateProfile(Profile updatedProfile) {
-        ProfileEntity updatedProfileEntity = profileDataMapper.map(updatedProfile);
-        profileRepositoryJPA.save(updatedProfileEntity);
+        Optional<ProfileEntity> existingProfile = profileRepositoryJPA.findByNameIgnoreCase(updatedProfile.getName());
+        if (existingProfile.isEmpty()) {
+            throw new ProfileNotFoundException("Profile with name '" + updatedProfile.getName() + "' not found");
+        }
+        ProfileEntity existingProfileEntity = existingProfile.get();
+        profileRepositoryJPA.delete(existingProfileEntity);
+
+        // dirty fix to make hibernate understand that the old seasonRegistration should be removed
+//        existingProfileEntity.getSeasonRegistrations().getFirst().setProfile(null);
+//        existingProfileEntity.setSeasonRegistrations(List.of());
+//        profileRepositoryJPA.save(existingProfileEntity);
+
+        // update season with new season
+        var newProfile = profileDataMapper.map(updatedProfile);
+//        newProfile.getSeasonRegistrations().getFirst().setCurrentPosition(updatedProfile.getSeasonRegistrations().getFirst().getCurrentPosition());
+//        existingProfileEntity.setSeasonRegistrations(newProfile.getSeasonRegistrations());
+
+        profileRepositoryJPA.save(newProfile);
         log.info("Profile: {} is updated", updatedProfile);
     }
 }
