@@ -18,6 +18,8 @@ public class SeasonRegistrationEntity {
 
     private Integer accountBalance;
 
+    private Integer currentPosition;
+
     @ManyToOne
     @JoinColumn(name="profile_id")
     private ProfileEntity profile;
