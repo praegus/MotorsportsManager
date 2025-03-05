@@ -5,14 +5,11 @@ spring:
     password:
     driverClassName: org.h2.Driver
   jpa:
-    show-sql: true
+    show-sql: false
     properties:
-      hibernate.format_sql: true
+      hibernate.format_sql: false
     hibernate:
       ddl-auto: create-drop
-  liquibase:
-    change-log: classpath:liquibase/changelog-master.yaml
-    enabled: false
   h2:
     console:
       enabled: true
