@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import { TrackInfoResponse, RaceApi } from '@/generated-sources';
+import { TrackInfoResponse, RaceApi, ErrorResponse } from '@/generated-sources';
 import { useRouter } from 'next/router'
 import {ErrorUtil} from '../utils'
 
@@ -18,28 +18,12 @@ export default function ManageTracks({data}: Props) {
           await raceApi.startRace({
               raceId: "TUTORIAL"
           }).then(() => {
-              router.reload('/');
+              router.reload();
           });
         } catch (errResponse: any) {
           ErrorUtil.retrieveErrorMessage(errResponse, (json: ErrorResponse) => setErrorResponse(json))
         }
       }
-
-  async function createProfile(name: string) {
-      try {
-        let createProfileRequest:CreateProfileRequest = {
-            name: name
-        };
-
-        await profileApi.createProfile({
-            createProfileRequest: createProfileRequest
-        }).then(() => {
-            router.push(`profile?name=${name}`)
-        });
-      } catch (errResponse: any) {
-        ErrorUtil.retrieveErrorMessage(errResponse, (json: ErrorResponse) => setErrorResponse(json))
-      }
-    }
 
   return (
       <div>
