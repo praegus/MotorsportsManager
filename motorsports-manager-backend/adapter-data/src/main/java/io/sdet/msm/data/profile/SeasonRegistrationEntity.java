@@ -35,4 +35,9 @@ public class SeasonRegistrationEntity {
         list.forEach(l -> l.setSeasonRegistration(this));
         this.trackInfo = list;
     }
+
+    @Override
+    public String toString() {
+        return "SeasonRegistrationEntity [name=" + name + "]";
+    }
 }
