@@ -12,9 +12,6 @@ import java.util.List;
 public class SeasonRegistrationEntity {
 
     @Id
-    @GeneratedValue
-    private Long id;
-
     private String name;
 
     private String racingClass;

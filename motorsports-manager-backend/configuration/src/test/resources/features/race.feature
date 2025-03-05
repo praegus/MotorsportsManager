@@ -19,22 +19,6 @@ Feature: race
           {
               "name": "2024-2025",
               "racingClass": "GO_KART",
-              "accountBalance": 0,
-              "vehicle": {
-                  "wheels": "STOCK",
-                  "engine": "STOCK",
-                  "chassis": "STOCK"
-              },
-              "trackInfo": [
-                  {
-                      "name": "TUTORIAL",
-                      "status": "UPCOMING"
-                  }
-              ]
-          },
-          {
-              "name": "2024-2025",
-              "racingClass": "GO_KART",
               "accountBalance": 10000,
               "vehicle": {
                   "wheels": "STOCK",
