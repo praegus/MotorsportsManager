@@ -39,6 +39,11 @@ public class ApiSteps {
         assertThatJson(response.getBody().prettyPrint()).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(expectedBody);
     }
 
+    @Then("Json should contain these values:")
+    public void assertPartialJsonResponse(String expectedBody) {
+        assertThatJson(response.getBody().prettyPrint()).when(Option.IGNORING_EXTRA_FIELDS).isEqualTo(expectedBody);
+    }
+
     @Then("I should receive a response containing:")
     public void assertPartialResponse(String expectedBody) {
         assertThat(response.getBody().prettyPrint()).containsIgnoringWhitespaces(expectedBody);
