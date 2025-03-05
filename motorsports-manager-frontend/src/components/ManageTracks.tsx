@@ -42,24 +42,48 @@ export default function ManageTracks({data}: Props) {
     }
 
   return (
+      <div>
       <div className="w-full flex">
         <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 m-auto mt-10">
             <h1>Next Track</h1>
-            {data.length > 0 ?
-            data?.map((record: TrackInfoResponse, index) =>
-              <div key={index}>
-                <p>Track: {record.name}</p>
-                <p>Status: {record.status}</p>
-                <p>Details: ???</p>
-              </div>
-            )
-            : `no info on current tracks!`}
+                {
+                  data.length > 0 ?
+                    data.filter((record: TrackInfoResponse) => record.status === "UPCOMING")
+                        .map((record: TrackInfoResponse, index) => (
+                          <div key={index}>
+                            <p>Track: {record.name}</p>
+                            <p>Status: {record.status}</p>
+                            <p>Details: ???</p>
+                          </div>
+                        ))
+                    : 'no info on next track available'
+                }
             <br />
             <button>Buy info for 10€</button>
             <br />
             <br />
             <button onClick={startRace}>Race!</button>
         </div>
-    </div>
+        </div>
+              <div className="w-full flex">
+                <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 m-auto mt-10">
+                    <h1>Previous Track(s)</h1>
+                        {
+                          data.length > 0 ?
+                            data.filter((record: TrackInfoResponse) => record.status === "COMPLETED")
+                                .map((record: TrackInfoResponse, index) => (
+                                  <div key={index}>
+                                    <p>Track: {record.name}</p>
+                                    <p>Status: {record.status}</p>
+                                    <p>Prize money: €{record.prizeMoney}</p>
+                                  <br />
+                                  </div>
+                                ))
+                            : 'No tracks completed yet.'
+                        }
+                </div>
+            </div>
+        </div>
+
   );
 };
