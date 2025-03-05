@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -42,11 +43,15 @@ public class ProfileRepositoryImpl implements ProfileRepository {
     }
 
     @Override
-    public void updateProfile(Profile profile) {
-        if (profileRepositoryJPA.findByNameIgnoreCase(profile.getName()).isEmpty()) {
-            throw new ProfileNotFoundException("Profile with name '" + profile.getName() + "' not found");
+    public void updateProfile(Profile updatedProfile) {
+        ProfileEntity updatedProfileEntity = profileDataMapper.map(updatedProfile);
+        Optional<ProfileEntity> existingProfile = profileRepositoryJPA.findByNameIgnoreCase(updatedProfile.getName());
+        if (existingProfile.isEmpty()) {
+            throw new ProfileNotFoundException("Profile with name '" + updatedProfile.getName() + "' not found");
         }
-        profileDataMapper.map(profileRepositoryJPA.save(profileDataMapper.map(profile)));
-        log.info("Profile: {} is updated", profile);
+        ProfileEntity existingProfileEntity = existingProfile.get();
+        existingProfileEntity.setSeasonRegistrations(updatedProfileEntity.getSeasonRegistrations());
+        profileRepositoryJPA.save(existingProfileEntity);
+        log.info("Profile: {} is updated", updatedProfile);
     }
 }
