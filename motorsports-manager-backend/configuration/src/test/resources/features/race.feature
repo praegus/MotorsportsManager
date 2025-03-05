@@ -20,6 +20,7 @@ Feature: race
               "name": "2024-2025",
               "racingClass": "GO_KART",
               "accountBalance": 10000,
+              "currentPosition":3,
               "vehicle": {
                   "wheels": "STOCK",
                   "engine": "STOCK",
