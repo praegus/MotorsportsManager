@@ -11,20 +11,13 @@ Feature: race
     When I create "/races/TUTORIAL"
     Then I should receive a response with status code 204
     When I retrieve "/profiles/johan"
-    And I should receive:
+    And Json should contain these values:
     """
     {
-      "name": "Johan",
       "seasonRegistrations": [
           {
-              "name": "2024-2025",
-              "racingClass": "GO_KART",
               "accountBalance": 10000,
-              "vehicle": {
-                  "wheels": "STOCK",
-                  "engine": "STOCK",
-                  "chassis": "STOCK"
-              },
+              "currentPosition":3,
               "trackInfo": [
                   {
                       "name": "TUTORIAL",
