@@ -1,15 +1,45 @@
-import { TrackInfoResponse } from '@/generated-sources';
+import {useState} from 'react'
+import { TrackInfoResponse, RaceApi } from '@/generated-sources';
 import { useRouter } from 'next/router'
+import {ErrorUtil} from '../utils'
 
 type Props = {
   data: TrackInfoResponse[]
 }
 
 export default function ManageTracks({data}: Props) {
+    const [errorResponse, setErrorResponse] = useState<ErrorResponse | null>(null);
   const router = useRouter();
+  var raceApi = new RaceApi();
+
   async function startRace(){
-      console.log("hallo")
+      try {
+
+          await raceApi.startRace({
+              raceId: "TUTORIAL"
+          }).then(() => {
+              router.refresh();
+          });
+        } catch (errResponse: any) {
+          ErrorUtil.retrieveErrorMessage(errResponse, (json: ErrorResponse) => setErrorResponse(json))
+        }
       }
+
+  async function createProfile(name: string) {
+      try {
+        let createProfileRequest:CreateProfileRequest = {
+            name: name
+        };
+
+        await profileApi.createProfile({
+            createProfileRequest: createProfileRequest
+        }).then(() => {
+            router.push(`profile?name=${name}`)
+        });
+      } catch (errResponse: any) {
+        ErrorUtil.retrieveErrorMessage(errResponse, (json: ErrorResponse) => setErrorResponse(json))
+      }
+    }
 
   return (
       <div className="w-full flex">
