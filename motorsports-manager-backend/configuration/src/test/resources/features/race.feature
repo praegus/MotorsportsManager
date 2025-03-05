@@ -16,7 +16,7 @@ Feature: race
     {
       "seasonRegistrations": [
           {
-              "accountBalance": 10001,
+              "accountBalance": 10000,
               "currentPosition":3,
               "trackInfo": [
                   {
