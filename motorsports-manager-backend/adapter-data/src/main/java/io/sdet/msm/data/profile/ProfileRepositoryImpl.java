@@ -2,6 +2,7 @@ package io.sdet.msm.data.profile;
 
 import io.sdet.msm.business.profile.Profile;
 import io.sdet.msm.business.profile.ProfileRepository;
+import io.sdet.msm.business.profile.TrackInfo;
 import io.sdet.msm.exception.ProfileDuplicatedException;
 import io.sdet.msm.exception.ProfileNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -48,20 +49,43 @@ public class ProfileRepositoryImpl implements ProfileRepository {
         if (existingProfile.isEmpty()) {
             throw new ProfileNotFoundException("Profile with name '" + updatedProfile.getName() + "' not found");
         }
-        ProfileEntity existingProfileEntity = existingProfile.get();
-        profileRepositoryJPA.delete(existingProfileEntity);
 
-        // dirty fix to make hibernate understand that the old seasonRegistration should be removed
-//        existingProfileEntity.getSeasonRegistrations().getFirst().setProfile(null);
-//        existingProfileEntity.setSeasonRegistrations(List.of());
-//        profileRepositoryJPA.save(existingProfileEntity);
+        // currently only updates single season
+        var seasonToUpdate = updatedProfile.getSeasonRegistrations().getFirst();
 
-        // update season with new season
-        var newProfile = profileDataMapper.map(updatedProfile);
-//        newProfile.getSeasonRegistrations().getFirst().setCurrentPosition(updatedProfile.getSeasonRegistrations().getFirst().getCurrentPosition());
-//        existingProfileEntity.setSeasonRegistrations(newProfile.getSeasonRegistrations());
+        existingProfile.ifPresent(existingProfileEntity -> {
+            existingProfileEntity.getSeasonRegistrations()
+                    .stream()
+                    .filter(sr -> sr.getName().equalsIgnoreCase(seasonToUpdate.getName()))
+                    .findFirst()
+                    .ifPresent(seasonEntity -> {
+                        seasonEntity.setCurrentPosition(seasonToUpdate.getCurrentPosition());
+                        seasonEntity.setAccountBalance(seasonToUpdate.getAccountBalance());
+                        seasonToUpdate.getTrackInfo().forEach(trackInfoToUpdate -> updateTrackInfoInSeason(seasonEntity, trackInfoToUpdate));
+                    });
+            profileRepositoryJPA.save(existingProfileEntity);
+        });
 
-        profileRepositoryJPA.save(newProfile);
         log.info("Profile: {} is updated", updatedProfile);
+    }
+
+    private void updateTrackInfoInSeason(SeasonRegistrationEntity seasonEntity, TrackInfo trackInfoToUpdate) {
+        seasonEntity.getTrackInfo()
+                .stream()
+                .filter(trackEntity -> trackEntity.getName().equalsIgnoreCase(trackInfoToUpdate.getName()))
+                .findFirst()
+                .ifPresentOrElse(
+                    trackEntity -> {
+                        // update existing track
+                        trackEntity.setStatus(trackInfoToUpdate.getStatus().name());
+                        trackEntity.setPrizeMoney(trackInfoToUpdate.getPrizeMoney());
+                    },
+                    () -> {
+                        // add new track
+                        var newTrackEntity = profileDataMapper.map(trackInfoToUpdate);
+                        newTrackEntity.setSeasonRegistration(seasonEntity);
+                        seasonEntity.getTrackInfo().add(newTrackEntity);
+                    }
+                );
     }
 }
