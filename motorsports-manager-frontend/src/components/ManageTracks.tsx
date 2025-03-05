@@ -18,7 +18,7 @@ export default function ManageTracks({data}: Props) {
           await raceApi.startRace({
               raceId: "TUTORIAL"
           }).then(() => {
-              router.refresh();
+              router.reload('/');
           });
         } catch (errResponse: any) {
           ErrorUtil.retrieveErrorMessage(errResponse, (json: ErrorResponse) => setErrorResponse(json))
