@@ -37,10 +37,13 @@ public class RaceService {
                 seasonRegistration.setCurrentPosition(3);
                 // add 10k to account balance
                 seasonRegistration.setAccountBalance(seasonRegistration.getAccountBalance() + 10000);
-                // set tutorial track to completed
+                // update tutorial track data
                 seasonRegistration.getTrackInfo().forEach(trackInfo -> {
                     if (trackInfo.getName().equals(TUTORIAL.name())) {
                         trackInfo.setStatus(COMPLETED);
+                        trackInfo.setPrizeMoney(10000);
+                        trackInfo.setPoints(15);
+                        trackInfo.setMessage("You have completed the tutorial race and came in third place. You have earned $10,000 and 15 points.");
                     }
                 });
                 // add windy road track
