@@ -72,7 +72,6 @@ paths:
                 $ref: '#/components/schemas/ProfileResponse'
         409:
           $ref: '#/components/responses/ConflictResponse'
-
   /profiles/{name}:
     get:
       summary: Retrieve a profile by name
@@ -94,6 +93,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProfileResponse'
+  /races/{raceId}:
+    post:
+      summary: Start a race
+      description: Endpoint to start a race
+      operationId: startRace
+      tags:
+        - race
+      parameters:
+        - name: raceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        204:
+          description: ok
+        404:
+          description: not found
+
 components:
   schemas:
     ChassisResponse:
@@ -122,6 +140,9 @@ components:
         accountBalance:
           type: integer
           format: int32
+        currentPosition:
+          type: integer
+          format: int32
         vehicle:
           $ref: '#/components/schemas/VehicleResponse'
         trackInfo:
@@ -145,6 +166,11 @@ components:
         status:
           type: string
         prizeMoney:
+          type: integer
+          format: int32
+        message:
+          type: string
+        points:
           type: integer
           format: int32
     ProfileName:

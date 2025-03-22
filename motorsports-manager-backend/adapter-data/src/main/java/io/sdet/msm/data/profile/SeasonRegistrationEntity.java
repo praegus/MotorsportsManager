@@ -21,6 +21,8 @@ public class SeasonRegistrationEntity {
 
     private Integer accountBalance;
 
+    private Integer currentPosition;
+
     @ManyToOne
     @JoinColumn(name="profile_id")
     private ProfileEntity profile;
@@ -35,5 +37,10 @@ public class SeasonRegistrationEntity {
     public void setTrackInfo(List<TrackInfoEntity> list) {
         list.forEach(l -> l.setSeasonRegistration(this));
         this.trackInfo = list;
+    }
+
+    @Override
+    public String toString() {
+        return "SeasonRegistrationEntity [name=" + name + "]";
     }
 }

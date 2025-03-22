@@ -8,5 +8,9 @@ public interface ProfileRepository {
 
     Profile createProfile(Profile profile);
 
+    void updateProfile(Profile profile);
+
     List<Profile> getAllProfiles();
+
+
 }

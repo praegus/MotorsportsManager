@@ -22,7 +22,7 @@ export default function NavBar({data}: Props) {
       </div>
       <div className="flex-none w-32">
         { data? 
-        <p>Welcome! {data}</p>
+        <p>Greetings <b>{data}</b>! Welcome!</p>
         : ''}
       </div>
     </div>

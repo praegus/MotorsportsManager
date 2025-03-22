@@ -40,4 +40,9 @@ public class ProfileEntity {
         list.forEach(l -> l.setProfile(this));
         this.seasonRegistrations = list;
     }
+
+    @Override
+    public String toString() {
+        return "ProfileEntity [name=" + name + "]";
+    }
 }
