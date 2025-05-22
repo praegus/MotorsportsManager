@@ -1,4 +1,4 @@
-package io.sdet.msm.configuration;
+package io.sdet.msm.configuration.runner;
 
 import io.cucumber.java.Before;
 import io.sdet.msm.data.profile.ProfileRepositoryJPA;
