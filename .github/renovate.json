@@ -4,6 +4,7 @@
   "gitAuthor": "Renovate Bot <renovate-bot@praegus.nl>",
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate Dependency Dashboard",
+  "enabled": false,
   "packageRules": [
     {
       "groupName": "all non-major dependencies",
