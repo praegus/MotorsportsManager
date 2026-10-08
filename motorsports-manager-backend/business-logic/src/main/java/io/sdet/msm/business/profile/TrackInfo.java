@@ -12,4 +12,8 @@ public class TrackInfo {
     private TrackStatus status;
 
     private Integer prizeMoney;
+
+    private String message;
+
+    private Integer points;
 }

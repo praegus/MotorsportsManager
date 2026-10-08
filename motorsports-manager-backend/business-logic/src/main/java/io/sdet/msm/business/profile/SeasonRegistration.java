@@ -16,6 +16,8 @@ public class SeasonRegistration {
 
     private Integer accountBalance;
 
+    private Integer currentPosition;
+
     private Vehicle vehicle;
 
     private List<TrackInfo> trackInfo;

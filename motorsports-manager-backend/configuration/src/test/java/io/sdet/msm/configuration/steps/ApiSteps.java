@@ -24,6 +24,11 @@ public class ApiSteps {
         response = baseRequest().body(body).contentType(ContentType.JSON).when().post(path);
     }
 
+    @When("I create {string}")
+    public void post(String path) {
+        response = baseRequest().when().post(path);
+    }
+
     @Then("I retrieve {string}")
     public void get(String path) {
         response = baseRequest().when().get(path);
@@ -32,6 +37,11 @@ public class ApiSteps {
     @Then("I should receive:")
     public void assertResponse(String expectedBody) {
         assertThatJson(response.getBody().prettyPrint()).when(Option.IGNORING_ARRAY_ORDER).isEqualTo(expectedBody);
+    }
+
+    @Then("Json should contain these values:")
+    public void assertPartialJsonResponse(String expectedBody) {
+        assertThatJson(response.getBody().prettyPrint()).when(Option.IGNORING_EXTRA_FIELDS).isEqualTo(expectedBody);
     }
 
     @Then("I should receive a response containing:")
